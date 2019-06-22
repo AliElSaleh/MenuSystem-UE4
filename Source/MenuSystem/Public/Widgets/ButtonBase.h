@@ -9,6 +9,11 @@
 UENUM()
 enum EButtonType
 {
+	NEW_GAME UMETA(DisplayName = "New Game"),
+	CONTINUE UMETA(DisplayName = "Continue"),
+	OPTIONS UMETA(DisplayName = "Options"),
+	CREDITS UMETA(DisplayName = "Credits"),
+	EXIT UMETA(DisplayName = "Exit"),
 	VIDEO UMETA(DisplayName = "Video"),
 	AUDIO UMETA(DisplayName = "Audio"),
 	CONTROLS UMETA(DisplayName = "Controls"),
@@ -26,6 +31,7 @@ class MENUSYSTEM_API UButtonBase : public UUserWidget
 protected:
 	void NativeConstruct() override;
 
+	// For button functionality
 	UFUNCTION(BlueprintCallable, Category = "Events")
 		virtual void OnButtonReleased();
 
@@ -43,9 +49,6 @@ protected:
 
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Menu Button")
 		FText ButtonTooltipText;
-
-	UPROPERTY(BlueprintReadWrite, Category = "Menu Button")
-		class UOptionsMenu* OptionsMenuRef;
 
 	class AMenuHUD* MenuHUD;
 };

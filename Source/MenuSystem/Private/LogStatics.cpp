@@ -29,7 +29,7 @@ void ULogStatics::LogDebugMessage(const ELogLevel LogLevel, const FString& LogMe
 	{
 	case INFO:
 		if (bLogInViewport)
-			GEngine->AddOnScreenDebugMessage(-1, TimeToDisplay, FColor::Blue, LogMessage);
+			GEngine->AddOnScreenDebugMessage(-1, TimeToDisplay, FColor::Cyan, LogMessage);
 		else
 			UE_LOG(LogTemp, Warning, TEXT("%s"), *LogMessage)
 		break;

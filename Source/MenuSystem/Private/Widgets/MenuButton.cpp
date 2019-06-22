@@ -1,53 +1,47 @@
 // Copyright Ali El Saleh 2019
 
-#include "Widgets/MenuButton.h"
-#include "Widgets/MainMenu.h"
+#include "MenuButton.h"
+#include "MainMenu.h"
 #include "Kismet/KismetSystemLibrary.h"
-#include "Kismet/GameplayStatics.h"
 #include "MenuHUD.h"
 #include "LogStatics.h"
 
-void UMenuButton::NativeConstruct()
-{
-	Super::NativeConstruct();
-
-	MenuHUD = Cast<AMenuHUD>(UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetHUD());
-}
-
 void UMenuButton::OnButtonReleased()
 {
+	Super::OnButtonReleased();
+
+	// Error check
+	if (IsMainMenuRefNull())
+		return;
+
 	switch (ButtonType)
 	{
 	case NEW_GAME:
 		MainMenuRef->bNewGameSelected = true;
+		MainMenuRef->bOptionsSelected = false;
 
-		if (MenuHUD)
-			MenuHUD->HideMainMenu();
-		else
-			ULogStatics::LogDebugMessage(ERROR, FString("HUD is null"), true);
-
+		MenuHUD->HideMainMenu();
 		break;
+
 	case CONTINUE:
-		if (MenuHUD)
-			MenuHUD->SlideMainMenu();
-		else
-			ULogStatics::LogDebugMessage(ERROR, FString("HUD is null"), true);
+		MainMenuRef->bNewGameSelected = false;
+		MainMenuRef->bOptionsSelected = false;
 
+		MenuHUD->SlideMainMenu();
 		break;
+
 	case OPTIONS:
+		MainMenuRef->bNewGameSelected = false;
 		MainMenuRef->bOptionsSelected = true;
 
-		if (MenuHUD)
-			MenuHUD->HideMainMenu();
-		else
-			ULogStatics::LogDebugMessage(ERROR, FString("HUD is null"), true);
-
+		MenuHUD->HideMainMenu();
 		break;
+
 	case CREDITS:
-		if (MenuHUD)
-			MenuHUD->HideMainMenu();
-		else
-			ULogStatics::LogDebugMessage(ERROR, FString("HUD is null"), true);
+		MainMenuRef->bNewGameSelected = false;
+		MainMenuRef->bOptionsSelected = false;
+
+		MenuHUD->HideMainMenu();
 		break;
 
 	case EXIT:
@@ -55,19 +49,38 @@ void UMenuButton::OnButtonReleased()
 		break;
 
 	default:
-		ULogStatics::LogDebugMessage(WARNING, FString("Button doesn't exist"), true);
+		ULogStatics::LogDebugMessage(INFO, FString("UMenuButton::OnButtonReleased : Button does not exist!"), true);
 		break;
 	}
 }
 
 void UMenuButton::OnButtonHovered()
 {
+	// Error check
+	if (IsMainMenuRefNull())
+		return;
+
 	// Set the menu's tooltip text based on this button's tooltip text set in the widget editor
 	MainMenuRef->SetMenuTooltipText(ButtonTooltipText);
 }
 
 void UMenuButton::OnButtonUnhovered()
 {
+	// Error check
+	if (IsMainMenuRefNull())
+		return;
+
 	// Clear tooltip in main menu
 	MainMenuRef->SetMenuTooltipText(FText());
+}
+
+bool UMenuButton::IsMainMenuRefNull() const
+{
+	if (!MainMenuRef)
+	{
+		ULogStatics::LogDebugMessage(ERROR, FString(GetName() + " | MainMenuRef is null."), true);
+		return true;
+	}
+
+	return false;
 }

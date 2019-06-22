@@ -10,12 +10,14 @@ void UButtonBase::NativeConstruct()
 {
 	Super::NativeConstruct();
 
+	// Get the Menu HUD
 	MenuHUD = Cast<AMenuHUD>(UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetHUD());
 }
 
 void UButtonBase::OnButtonReleased()
 {
-	ULogStatics::LogDebugMessage(INFO, FString("No implementation for Released. Derive from UButtonBase to add functionality."), true);
+	if (!MenuHUD)
+		ULogStatics::LogDebugMessage(ERROR, FString(GetName() + "OnButtonReleased : MenuHUD is null."), true);
 }
 
 void UButtonBase::OnButtonHovered()
