@@ -9,15 +9,15 @@
 UENUM()
 enum EButtonType
 {
-	NEW_GAME UMETA(DisplayName = "New Game"),
-	CONTINUE UMETA(DisplayName = "Continue"),
-	OPTIONS UMETA(DisplayName = "Options"),
-	CREDITS UMETA(DisplayName = "Credits"),
-	EXIT UMETA(DisplayName = "Exit"),
-	VIDEO UMETA(DisplayName = "Video"),
-	AUDIO UMETA(DisplayName = "Audio"),
-	CONTROLS UMETA(DisplayName = "Controls"),
-	BACK UMETA(DisplayName = "Back")
+	NEW_GAME	UMETA(DisplayName = "New Game"),
+	CONTINUE	UMETA(DisplayName = "Continue"),
+	OPTIONS		UMETA(DisplayName = "Options"),
+	CREDITS		UMETA(DisplayName = "Credits"),
+	EXIT		UMETA(DisplayName = "Exit"),
+	VIDEO		UMETA(DisplayName = "Video"),
+	AUDIO		UMETA(DisplayName = "Audio"),
+	CONTROLS	UMETA(DisplayName = "Controls"),
+	BACK		UMETA(DisplayName = "Back")
 };
 
 /**
