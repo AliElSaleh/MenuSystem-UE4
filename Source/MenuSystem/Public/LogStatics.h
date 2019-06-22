@@ -27,5 +27,5 @@ public:
 	static void LogObjectValidity(UObject* ObjectRef, bool bLogInViewport = false);
 
 	// Log a debug message to the console or viewport
-	static void LogDebugMessage(ELogLevel LogLevel, const FString& LogMessage, bool bLogInViewport = false);
+	static void LogDebugMessage(ELogLevel LogLevel, const FString& LogMessage, bool bLogInViewport = false, float TimeToDisplay = 5.0f);
 };

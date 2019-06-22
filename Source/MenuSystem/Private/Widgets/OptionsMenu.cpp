@@ -1,35 +1,15 @@
 // Copyright Ali El Saleh 2019
 
-
 #include "OptionsMenu.h"
 #include "MenuHUD.h"
-#include "Kismet/GameplayStatics.h"
-
-void UOptionsMenu::SetOptionsTooltipText(const FText& Text)
-{
-	ButtonTooltipText = Text;
-}
-
-void UOptionsMenu::FadeIn()
-{
-	PlayAnimation(Fade, 0.0f, 1, EUMGSequencePlayMode::Reverse);
-}
-
-void UOptionsMenu::FadeOut()
-{
-	PlayAnimation(Fade);
-}
+#include "LogStatics.h"
 
 void UOptionsMenu::NativeConstruct()
 {
 	Super::NativeConstruct();
 
-	MenuHUD = Cast<AMenuHUD>(UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetHUD());
-}
-
-void UOptionsMenu::OnAnimationStarted_Implementation(const UWidgetAnimation* Animation)
-{
-	SetVisibility(ESlateVisibility::Visible);
+	if (!Fade)
+		ULogStatics::LogDebugMessage(ERROR, FString("UOptionsMenu::NativeConstruct : Fade anim is null. You forgot to assign the fade animation in widget blueprint"), true);
 }
 
 void UOptionsMenu::OnAnimationFinished_Implementation(const UWidgetAnimation* Animation)
@@ -47,4 +27,9 @@ void UOptionsMenu::OnAnimationFinished_Implementation(const UWidgetAnimation* An
 	}
 
 	bControlsSelected = false;
+}
+
+void UOptionsMenu::SetOptionsTooltipText(const FText& Text)
+{
+	ButtonTooltipText = Text;
 }

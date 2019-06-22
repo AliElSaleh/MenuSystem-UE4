@@ -2,19 +2,16 @@
 
 
 #include "ControlsMenu.h"
-#include "Kismet/GameplayStatics.h"
 #include "MenuHUD.h"
 #include "OutputDeviceNull.h"
-#include "WidgetTree.h"
+#include "LogStatics.h"
 
-void UControlsMenu::FadeIn()
+void UControlsMenu::NativeConstruct()
 {
-	PlayAnimation(Fade, 0.0f, 1, EUMGSequencePlayMode::Reverse);
-}
+	Super::NativeConstruct();
 
-void UControlsMenu::FadeOut()
-{
-	PlayAnimation(Fade);
+	if (!Fade)
+		ULogStatics::LogDebugMessage(ERROR, FString("UControlsMenu::NativeConstruct : Fade anim is null. You forgot to assign the fade animation in widget blueprint"), true);
 }
 
 void UControlsMenu::ResetKeyBindings()
@@ -25,18 +22,6 @@ void UControlsMenu::ResetKeyBindings()
 		FOutputDeviceNull OutputDevice;
 		Slot->CallFunctionByNameWithArguments(TEXT("ResetKeyMappings"), OutputDevice, nullptr, true);
 	}
-}
-
-void UControlsMenu::NativeConstruct()
-{
-	Super::NativeConstruct();
-
-	MenuHUD = Cast<AMenuHUD>(UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetHUD());
-}
-
-void UControlsMenu::OnAnimationStarted_Implementation(const UWidgetAnimation* Animation)
-{
-	SetVisibility(ESlateVisibility::Visible);
 }
 
 void UControlsMenu::OnAnimationFinished_Implementation(const UWidgetAnimation* Animation)
