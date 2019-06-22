@@ -6,13 +6,6 @@
 #include "MenuHUD.h"
 #include "LogStatics.h"
 
-void UOptionsButton::NativeConstruct()
-{
-	Super::NativeConstruct();
-
-	MenuHUD = Cast<AMenuHUD>(UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetHUD());
-}
-
 void UOptionsButton::OnButtonReleased()
 {
 	switch (ButtonType)
