@@ -13,12 +13,17 @@ class MENUSYSTEM_API UMenuSetting : public UUserWidget
 {
 	GENERATED_BODY()
 
-protected:
+public:
 	virtual void Apply();
+	virtual void Init();
 
+protected:
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category = "Video Setting")
 		FText SettingLabel;
 
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category = "Video Setting")
 		FText SettingTooltipText;
+
+	class UMainMenu* MainMenuRef;
+	class AMenuHUD* MenuHUD;
 };

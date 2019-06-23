@@ -13,18 +13,11 @@ class MENUSYSTEM_API UVideoSetting : public UMenuSetting
 {
 	GENERATED_BODY()
 
+public:
+	void Init() override;
+
 protected:
-	void Apply() override;
-
-	UFUNCTION(BlueprintCallable, Category = "Video Setting")
-		void ChangeResolution(const FString& SelectedItem);
-
-	UFUNCTION(BlueprintCallable, Category = "Video Setting")
-		void PopulateResolutionList(class UComboBoxString* DropDownList);
-
-	UPROPERTY(EditInstanceOnly, Category = "Video Setting")
-		FString DefaultResolution = FString("1280x720");
-
-private:
-	FScreenResolutionArray ScreenResolutions;
+	TArray<UVideoSetting*> Settings;
+		
+	class UVideoMenu* VideoMenuRef;
 };

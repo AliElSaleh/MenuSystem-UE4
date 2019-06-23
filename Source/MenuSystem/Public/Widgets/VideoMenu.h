@@ -13,6 +13,17 @@ class MENUSYSTEM_API UVideoMenu : public UMenuBase
 {
 	GENERATED_BODY()
 
+public:
+	void Init() override;
+	void AddVideoSetting(class UVideoSetting* Setting);
+
 protected:
 	void NativeConstruct() override;
+
+	void Apply() override;
+
+	void StoreAllSettings(class UVerticalBox* ParentWidget) override;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Video Menu")
+		TArray<class UVideoSetting*> VideoSettings;
 };

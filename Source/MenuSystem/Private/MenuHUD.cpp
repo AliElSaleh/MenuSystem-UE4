@@ -11,14 +11,6 @@
 #include "ControlsMenu.h"
 #include "LogStatics.h"
 
-#define MAIN_MENU 0
-#define OPTIONS_MENU 1
-#define NEW_GAME_MENU 2
-#define CONTROLS_MENU 3
-#define VIDEO_MENU 4
-#define AUDIO_MENU 5
-#define CREDITS_SCREEN 6
-
 AMenuHUD::AMenuHUD()
 {
 	static ConstructorHelpers::FClassFinder<UWidget> MainMenuWidget(TEXT("WidgetBlueprint'/Game/UI/UI_MainMenu.UI_MainMenu_C'"));
@@ -47,6 +39,11 @@ AMenuHUD::AMenuHUD()
 	WidgetNames.Emplace(FName("NewGameMenuUI"));
 	WidgetNames.Emplace(FName("ControlsUI"));
 	WidgetNames.Emplace(FName("VideoMenuUI"));
+}
+
+UUserWidget* AMenuHUD::GetMenu(const int32 Index)
+{
+	return Widgets[Index];
 }
 
 void AMenuHUD::ShowMainMenu()
@@ -110,7 +107,10 @@ void AMenuHUD::BeginPlay()
 
 	// Error check for newley created widgets
 	if (AllWidgetsValid())
+	{
 		AddWidgetsToScreen();
+		InitializeWidgets();
+	}
 	else
 		LogWidgetFailures();
 }
@@ -118,8 +118,18 @@ void AMenuHUD::BeginPlay()
 void AMenuHUD::CreateWidgets()
 {
 	Widgets.Reserve(WidgetClasses.Num());
+
 	for (int32 i = 0; i < WidgetClasses.Num(); i++)
-		Widgets.Emplace(CreateWidget<UUserWidget>(GetWorld(), WidgetClasses[i], WidgetNames[i]));
+		Widgets.Emplace(CreateWidget<UMenuBase>(GetWorld(), WidgetClasses[i], WidgetNames[i]));
+}
+
+void AMenuHUD::InitializeWidgets()
+{
+	Cast<UMainMenu>(Widgets[MAIN_MENU])->Init();
+	Cast<UOptionsMenu>(Widgets[OPTIONS_MENU])->Init();
+	Cast<UNewGameMenu>(Widgets[NEW_GAME_MENU])->Init();
+	Cast<UControlsMenu>(Widgets[CONTROLS_MENU])->Init();
+	Cast<UVideoMenu>(Widgets[VIDEO_MENU])->Init();
 }
 
 void AMenuHUD::AddWidgetsToScreen()

@@ -17,14 +17,24 @@ public:
 	virtual void FadeIn();
 	virtual void FadeOut();
 
+	virtual void Init();
+
+	virtual TArray<class UMenuSetting*> GetAllSettings();
+
 protected:
 	void NativeConstruct() override;
+
+	UFUNCTION(BlueprintCallable)
+		virtual void Apply();
+
+	UFUNCTION(BlueprintCallable, Category = "Video Menu")
+		virtual void StoreAllSettings(class UVerticalBox* ParentWidget);
 
 	void OnAnimationStarted_Implementation(const UWidgetAnimation* Animation) override;
 	void OnAnimationFinished_Implementation(const UWidgetAnimation* Animation) override;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Animations")
-		UWidgetAnimation* Fade;
+		UWidgetAnimation* Fade{};
 
-	class AMenuHUD* MenuHUD;
+	class AMenuHUD* MenuHUD{};
 };
