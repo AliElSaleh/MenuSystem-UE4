@@ -10,12 +10,11 @@
  * Resolution setting class manages the change of the screen resolution
  */
 UCLASS()
-class MENUSYSTEM_API UResolutionSetting : public UVideoSetting
+class MENUSYSTEM_API UResolutionSetting final : public UVideoSetting
 {
 	GENERATED_BODY()
 
 public:
-	void Init() override;
 	void Apply() override;
 
 protected:

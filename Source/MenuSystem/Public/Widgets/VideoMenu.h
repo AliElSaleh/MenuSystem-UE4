@@ -9,7 +9,7 @@
  * Base class for a video menu widget blueprint
  */
 UCLASS()
-class MENUSYSTEM_API UVideoMenu : public UMenuBase
+class MENUSYSTEM_API UVideoMenu final : public UMenuBase
 {
 	GENERATED_BODY()
 
@@ -19,9 +19,7 @@ public:
 
 protected:
 	void NativeConstruct() override;
-
 	void Apply() override;
-
 	void StoreAllSettings(class UVerticalBox* ParentWidget) override;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Video Menu")

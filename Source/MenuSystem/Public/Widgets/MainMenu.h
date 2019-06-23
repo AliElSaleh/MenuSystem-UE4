@@ -10,7 +10,7 @@
  * Base class of a main menu widget blueprint
  */
 UCLASS()
-class MENUSYSTEM_API UMainMenu : public UMenuBase
+class MENUSYSTEM_API UMainMenu final : public UMenuBase
 {
 	GENERATED_BODY()
 
@@ -22,6 +22,7 @@ public:
 
 	bool bNewGameSelected{};
 	bool bOptionsSelected{};
+
 protected:
 	void OnAnimationFinished_Implementation(const UWidgetAnimation* Animation) override;
 
@@ -30,5 +31,4 @@ protected:
 
 	UPROPERTY(BlueprintReadOnly, Category = "Main Menu")
 		FText ButtonTooltipText;
-
 };

@@ -2,11 +2,7 @@
 
 
 #include "ResolutionSetting.h"
-#include "GameFramework/GameUserSettings.h"
 #include "Components/ComboBoxString.h"
-#include "VideoMenu.h"
-#include "Engine/Engine.h"
-#include "LogStatics.h"
 
 void UResolutionSetting::ChangeResolution(const FString& SelectedItem)
 {
@@ -38,11 +34,6 @@ void UResolutionSetting::PopulateResolutionList(UComboBoxString* DropDownList)
 
 	// Set the default resolution as the selected option
 	DropDownList->SetSelectedOption(DefaultResolution);
-}
-
-void UResolutionSetting::Init()
-{
-	Super::Init();
 }
 
 void UResolutionSetting::Apply()

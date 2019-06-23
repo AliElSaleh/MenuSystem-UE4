@@ -24,6 +24,5 @@ protected:
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category = "Video Setting")
 		FText SettingTooltipText;
 
-	class UMainMenu* MainMenuRef;
 	class AMenuHUD* MenuHUD;
 };

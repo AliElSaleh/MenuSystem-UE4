@@ -3,6 +3,8 @@
 #pragma once
 
 #include "MenuSetting.h"
+#include "Engine/Engine.h"
+#include "GameFramework/GameUserSettings.h"
 #include "VideoSetting.generated.h"
 
 /**
@@ -13,11 +15,6 @@ class MENUSYSTEM_API UVideoSetting : public UMenuSetting
 {
 	GENERATED_BODY()
 
-public:
-	void Init() override;
-
 protected:
 	TArray<UVideoSetting*> Settings;
-		
-	class UVideoMenu* VideoMenuRef;
 };

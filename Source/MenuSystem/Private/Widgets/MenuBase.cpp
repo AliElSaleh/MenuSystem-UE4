@@ -5,7 +5,6 @@
 #include "Kismet/GameplayStatics.h"
 #include "GameFramework/GameUserSettings.h"
 #include "Engine/Engine.h"
-#include "LogStatics.h"
 
 void UMenuBase::NativeConstruct()
 {
