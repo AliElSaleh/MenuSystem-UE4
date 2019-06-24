@@ -6,18 +6,19 @@
 #include "MenuHUD.generated.h"
 
 #define MAIN_MENU 0
-#define OPTIONS_MENU 1
-#define NEW_GAME_MENU 2
-#define CONTROLS_MENU 3
+#define OPTIONS_MENU 2
+#define NEW_GAME_MENU 1
+#define CONTROLS_MENU 5
 #define VIDEO_MENU 4
 #define AUDIO_MENU 5
-#define CREDITS_SCREEN 6
+#define CREDITS_SCREEN 2
+#define MASTER_MENU 7
 
 /**
  * A HUD that displays menu options to the user
  */
 UCLASS()
-class MENUSYSTEM_API AMenuHUD : public AHUD
+class MENUSYSTEM_API AMenuHUD final : public AHUD
 {
 	GENERATED_BODY()
 
@@ -54,7 +55,6 @@ protected:
 	bool AllWidgetsValid();
 
 private:
-	TArray<TSubclassOf<class UUserWidget>> WidgetClasses;
-	TArray<class UMenuBase*> Widgets;
-	TArray<FName> WidgetNames;
+	TSubclassOf<class UMenuBase> WidgetClass;
+	class UMasterMenu* MasterMenu;
 };

@@ -5,13 +5,24 @@
 #include "LogStatics.h"
 #include "TimerManager.h"
 #include "ButtonBase.h"
+#include "WidgetTree.h"
+#include "Components/VerticalBox.h"
 
-void UOptionsMenu::NativeConstruct()
+void UOptionsMenu::Init()
 {
-	Super::NativeConstruct();
+	Super::Init();
 
-	if (!Fade)
-		ULogStatics::LogDebugMessage(ERROR, FString("UOptionsMenu::NativeConstruct : Fade anim is null. You forgot to assign the fade animation in widget blueprint"), true);
+	ParentBox = Cast<UVerticalBox>(WidgetTree->FindWidget("MenuOptions"));
+
+	InitializeButtons();
+}
+
+void UOptionsMenu::InitializeButtons()
+{
+	for (auto Button : ParentBox->GetAllChildren())
+	{
+		Cast<UButtonBase>(Button)->Init();
+	}
 }
 
 void UOptionsMenu::Forward(const EButtonType Menu)

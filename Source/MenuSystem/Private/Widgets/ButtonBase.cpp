@@ -6,10 +6,8 @@
 #include "Kismet/GameplayStatics.h"
 #include "LogStatics.h"
 
-void UButtonBase::NativeConstruct()
+void UButtonBase::Init()
 {
-	Super::NativeConstruct();
-
 	// Get the Menu HUD
 	MenuHUD = Cast<AMenuHUD>(UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetHUD());
 }

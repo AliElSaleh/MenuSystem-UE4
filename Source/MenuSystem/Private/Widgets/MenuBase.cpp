@@ -7,12 +7,11 @@
 #include "Engine/Engine.h"
 #include "ButtonBase.h"
 #include "TimerManager.h"
+#include "LogStatics.h"
 
-void UMenuBase::NativeConstruct()
+void UMenuBase::InitializeButtons()
 {
-	Super::NativeConstruct();
-
-	MenuHUD = Cast<AMenuHUD>(UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetHUD());
+	ULogStatics::LogDebugMessage(INFO, FString("No buttons to initialize!"), true);
 }
 
 void UMenuBase::FadeIn()
@@ -29,7 +28,7 @@ void UMenuBase::FadeOut()
 
 void UMenuBase::Init()
 {
-	
+	MenuHUD = Cast<AMenuHUD>(UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetHUD());
 }
 
 void UMenuBase::OnAnimationStarted_Implementation(const UWidgetAnimation* Animation)

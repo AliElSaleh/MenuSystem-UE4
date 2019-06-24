@@ -40,11 +40,10 @@ public:
 		virtual void Back();
 
 protected:
-	void NativeConstruct() override;
+	virtual void InitializeButtons();
 
 	UFUNCTION(BlueprintCallable)
 		virtual void Apply();
-
 
 	UFUNCTION(BlueprintCallable, Category = "Video Menu")
 		virtual void StoreAllSettings(class UVerticalBox* ParentWidget);
@@ -54,6 +53,8 @@ protected:
 
 	void OnAnimationStarted_Implementation(const UWidgetAnimation* Animation) override;
 	void OnAnimationFinished_Implementation(const UWidgetAnimation* Animation) override;
+
+	UVerticalBox* ParentBox;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Animations")
 		UWidgetAnimation* Fade{};

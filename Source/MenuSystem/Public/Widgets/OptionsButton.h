@@ -9,13 +9,14 @@
  * Base class of an options button widget blueprint
  */
 UCLASS()
-class MENUSYSTEM_API UOptionsButton : public UButtonBase
+class MENUSYSTEM_API UOptionsButton final : public UButtonBase
 {
 	GENERATED_BODY()
 
-protected:
-	void NativeConstruct() override;
+public:
+	void Init() override;
 
+protected:
 	// For button functionality
 	void OnButtonReleased() override;
 

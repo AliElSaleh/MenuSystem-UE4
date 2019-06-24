@@ -8,9 +8,9 @@
 #include "LogStatics.h"
 #include "MenuHUD.h"
 
-void UControlsButton::NativeConstruct()
+void UControlsButton::Init()
 {
-	Super::NativeConstruct();
+	Super::Init();
 
 	ControlsMenuRef = Cast<UControlsMenu>(MenuHUD->GetMenu(CONTROLS_MENU));
 }

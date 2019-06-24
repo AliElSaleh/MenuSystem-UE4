@@ -18,6 +18,8 @@ void UVideoMenu::NativeConstruct()
 
 void UVideoMenu::Init()
 {
+	Super::Init();
+
 	for (auto Setting : VideoSettings)
 	{
 		Setting->Init();

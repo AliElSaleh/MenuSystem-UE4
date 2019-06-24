@@ -30,6 +30,9 @@ class MENUSYSTEM_API UButtonBase : public UUserWidget
 {
 	GENERATED_BODY()
 
+public:
+	virtual void Init();
+
 protected:
 	void NativeConstruct() override;
 

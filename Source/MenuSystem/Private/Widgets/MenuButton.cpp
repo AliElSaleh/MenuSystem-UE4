@@ -6,9 +6,9 @@
 #include "MenuHUD.h"
 #include "LogStatics.h"
 
-void UMenuButton::NativeConstruct()
+void UMenuButton::Init()
 {
-	Super::NativeConstruct();
+	Super::Init();
 
 	MainMenuRef = Cast<UMainMenu>(MenuHUD->GetMenu(MAIN_MENU));
 }

@@ -15,6 +15,9 @@ class MENUSYSTEM_API UMainMenu final : public UMenuBase
 	GENERATED_BODY()
 
 public:
+	void Init() override;
+	void InitializeButtons() override;
+
 	UFUNCTION(BlueprintCallable)
 		void SetMenuTooltipText(const FText& Text);
 

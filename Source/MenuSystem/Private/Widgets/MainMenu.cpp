@@ -1,11 +1,29 @@
 // Copyright Ali El Saleh 2019
 
-
 #include "Widgets/MainMenu.h"
 #include "MenuHUD.h"
 #include "ButtonBase.h"
+#include "WidgetTree.h"
+#include "Components/VerticalBox.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "Kismet/GameplayStatics.h"
+
+void UMainMenu::Init()
+{
+	Super::Init();
+
+	ParentBox = Cast<UVerticalBox>(WidgetTree->FindWidget("MenuOptions"));
+
+	InitializeButtons();
+}
+
+void UMainMenu::InitializeButtons()
+{
+	for (auto Button : ParentBox->GetAllChildren())
+	{
+		Cast<UButtonBase>(Button)->Init();
+	}
+}
 
 void UMainMenu::SetMenuTooltipText(const FText& Text)
 {

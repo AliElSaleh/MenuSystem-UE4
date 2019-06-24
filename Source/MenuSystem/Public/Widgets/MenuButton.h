@@ -13,9 +13,10 @@ class MENUSYSTEM_API UMenuButton : public UButtonBase
 {
 	GENERATED_BODY()
 
-protected:
-	void NativeConstruct() override;
+public:
+	void Init() override;
 
+protected:
 	// For button functionality
 	void OnButtonReleased() override;
 

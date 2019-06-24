@@ -15,6 +15,9 @@ class MENUSYSTEM_API UOptionsMenu final : public UMenuBase
 	GENERATED_BODY()
 	
 public:
+	void Init() override;
+	void InitializeButtons() override;
+
 	UFUNCTION(BlueprintCallable)
 		void SetOptionsTooltipText(const FText& Text);
 
@@ -22,8 +25,6 @@ public:
 	void Back() override;
 
 protected:
-	void NativeConstruct() override;
-
 	void GoForward() override;
 	void GoBack() override;
 

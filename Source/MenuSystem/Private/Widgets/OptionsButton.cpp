@@ -6,9 +6,9 @@
 #include "MenuHUD.h"
 #include "LogStatics.h"
 
-void UOptionsButton::NativeConstruct()
+void UOptionsButton::Init()
 {
-	Super::NativeConstruct();
+	Super::Init();
 
 	OptionsMenuRef = Cast<UOptionsMenu>(MenuHUD->GetMenu(OPTIONS_MENU));
 }
