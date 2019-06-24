@@ -27,8 +27,13 @@ protected:
 	UFUNCTION(BlueprintCallable)
 		virtual void Apply();
 
+	UFUNCTION(BlueprintCallable)
+		virtual void Back();
+
 	UFUNCTION(BlueprintCallable, Category = "Video Menu")
 		virtual void StoreAllSettings(class UVerticalBox* ParentWidget);
+
+	virtual void GoBack();
 
 	void OnAnimationStarted_Implementation(const UWidgetAnimation* Animation) override;
 	void OnAnimationFinished_Implementation(const UWidgetAnimation* Animation) override;
@@ -37,4 +42,6 @@ protected:
 		UWidgetAnimation* Fade{};
 
 	class AMenuHUD* MenuHUD{};
+
+	FTimerHandle TimerHandle;
 };

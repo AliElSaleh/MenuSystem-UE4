@@ -5,6 +5,8 @@
 #include "GameFramework/GameUserSettings.h"
 #include "VideoSetting.h"
 #include "Components/VerticalBox.h"
+#include "MenuHUD.h"
+#include "TimerManager.h"
 
 void UVideoMenu::NativeConstruct()
 {
@@ -28,6 +30,19 @@ void UVideoMenu::Apply()
 	{
 		Setting->Apply();
 	}
+}
+
+void UVideoMenu::Back()
+{
+	MenuHUD->HideVideoMenu();
+
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UVideoMenu::GoBack, 1.0f, false, Fade->GetEndTime());
+}
+
+void UVideoMenu::GoBack()
+{
+	MenuHUD->ShowOptionsMenu();
+	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
 }
 
 void UVideoMenu::AddVideoSetting(UVideoSetting* Setting)

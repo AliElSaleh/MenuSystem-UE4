@@ -20,6 +20,9 @@ public:
 protected:
 	void NativeConstruct() override;
 	void Apply() override;
+	void Back() override;
+	void GoBack() override;
+
 	void StoreAllSettings(class UVerticalBox* ParentWidget) override;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Video Menu")

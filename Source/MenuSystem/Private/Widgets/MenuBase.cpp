@@ -5,6 +5,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "GameFramework/GameUserSettings.h"
 #include "Engine/Engine.h"
+#include "LogStatics.h"
 
 void UMenuBase::NativeConstruct()
 {
@@ -51,7 +52,17 @@ void UMenuBase::Apply()
 	GEngine->GetGameUserSettings()->ApplySettings(false);
 }
 
+void UMenuBase::Back()
+{
+	ULogStatics::LogDebugMessage(INFO, FString("This menu does not implement the back button functionality"), true);
+}
+
 void UMenuBase::StoreAllSettings(UVerticalBox* ParentWidget)
+{
+
+}
+
+void UMenuBase::GoBack()
 {
 
 }
