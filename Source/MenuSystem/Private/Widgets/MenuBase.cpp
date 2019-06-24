@@ -6,6 +6,7 @@
 #include "GameFramework/GameUserSettings.h"
 #include "Engine/Engine.h"
 #include "LogStatics.h"
+#include "TimerManager.h"
 
 void UMenuBase::NativeConstruct()
 {
@@ -31,11 +32,6 @@ void UMenuBase::Init()
 	
 }
 
-TArray<UMenuSetting*> UMenuBase::GetAllSettings()
-{
-	return TArray<UMenuSetting*>();
-}
-
 void UMenuBase::OnAnimationStarted_Implementation(const UWidgetAnimation* Animation)
 {
 	SetVisibility(ESlateVisibility::Visible);
@@ -52,17 +48,28 @@ void UMenuBase::Apply()
 	GEngine->GetGameUserSettings()->ApplySettings(false);
 }
 
-void UMenuBase::Back()
-{
-	ULogStatics::LogDebugMessage(INFO, FString("This menu does not implement the back button functionality"), true);
-}
-
 void UMenuBase::StoreAllSettings(UVerticalBox* ParentWidget)
 {
 
 }
 
+void UMenuBase::Forward(const EMenuType Menu)
+{
+	MenuSelected = Menu;
+	GetWorld()->GetTimerManager().SetTimer(ForwardTimerHandle, this, &UMenuBase::GoForward, 1.0f, false, Fade->GetEndTime());
+}
+
+void UMenuBase::GoForward()
+{
+	GetWorld()->GetTimerManager().ClearTimer(ForwardTimerHandle);
+}
+
+void UMenuBase::Back()
+{
+	GetWorld()->GetTimerManager().SetTimer(BackTimerHandle, this, &UMenuBase::GoBack, 1.0f, false, Fade->GetEndTime());
+}
+
 void UMenuBase::GoBack()
 {
-
+	GetWorld()->GetTimerManager().ClearTimer(BackTimerHandle);
 }

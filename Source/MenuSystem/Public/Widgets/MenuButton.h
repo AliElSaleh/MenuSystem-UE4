@@ -14,6 +14,8 @@ class MENUSYSTEM_API UMenuButton : public UButtonBase
 	GENERATED_BODY()
 
 protected:
+	void NativeConstruct() override;
+
 	// For button functionality
 	void OnButtonReleased() override;
 
@@ -23,6 +25,10 @@ protected:
 
 	UPROPERTY(BlueprintReadWrite, Category = "Menu Button")
 		class UMainMenu* MainMenuRef;
+
+	
+	UPROPERTY(EditInstanceOnly, Category = "Menu Button")
+		TEnumAsByte<enum EMenuType> ButtonType;
 
 private:
 	bool IsMainMenuRefNull() const;

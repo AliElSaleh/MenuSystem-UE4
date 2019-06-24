@@ -14,18 +14,25 @@ void UMainMenu::SlideOut()
 	PlayAnimation(Slide);
 }
 
-void UMainMenu::OnAnimationFinished_Implementation(const UWidgetAnimation* Animation)
+void UMainMenu::Forward(const EMenuType Menu)
 {
-	if (RenderOpacity <= 0.0f)
-	{
-		SetVisibility(ESlateVisibility::Hidden);
+	MenuHUD->HideMainMenu();
 
-		if (bOptionsSelected)
-			MenuHUD->ShowOptionsMenu();
-		else if (bNewGameSelected)
-			MenuHUD->ShowNewGameMenu();
+	Super::Forward(Menu);
+}
+
+void UMainMenu::GoForward()
+{
+	switch (MenuSelected)
+	{
+	case OPTIONS:
+		MenuHUD->ShowOptionsMenu();
+		break;
+
+	default:
+		MenuHUD->ShowMainMenu();
+		break;
 	}
 
-	bNewGameSelected = false;
-	bOptionsSelected = false;
+	Super::GoForward();
 }

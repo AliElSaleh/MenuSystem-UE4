@@ -13,40 +13,6 @@ void UOptionsButton::OnButtonReleased()
 	// Error check
 	if (IsOptionsMenuRefNull())
 		return;
-
-	switch (ButtonType)
-	{
-	case VIDEO:
-		OptionsMenuRef->bVideoSelected = true;
-		OptionsMenuRef->bAudioSelected = false;
-		OptionsMenuRef->bControlsSelected = false;
-
-		MenuHUD->HideOptionsMenu();
-		break;
-
-	case AUDIO:
-		break;
-
-	case CONTROLS:
-		OptionsMenuRef->bVideoSelected = false;
-		OptionsMenuRef->bAudioSelected = false;
-		OptionsMenuRef->bControlsSelected = true;
-
-		MenuHUD->HideOptionsMenu();
-		break;
-
-	case BACK:
-		OptionsMenuRef->bVideoSelected = false;
-		OptionsMenuRef->bAudioSelected = false;
-		OptionsMenuRef->bControlsSelected = false;
-
-		MenuHUD->HideOptionsMenu();
-		break;
-
-	default:
-		ULogStatics::LogDebugMessage(INFO, FString("UOptionsButton::OnButtonReleased : Button type does not exist!"), true);
-		break;
-	}
 }
 
 void UOptionsButton::OnButtonHovered()

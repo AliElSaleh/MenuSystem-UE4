@@ -20,14 +20,12 @@ public:
 
 	void SlideOut();
 
-	bool bNewGameSelected{};
-	bool bOptionsSelected{};
+	void Forward(EMenuType Menu) override;
+	void GoForward() override;
 
 protected:
-	void OnAnimationFinished_Implementation(const UWidgetAnimation* Animation) override;
-
 	UPROPERTY(BlueprintReadWrite, Category = "Animations")
-		UWidgetAnimation* Slide;
+		UWidgetAnimation* Slide{};
 
 	UPROPERTY(BlueprintReadOnly, Category = "Main Menu")
 		FText ButtonTooltipText;

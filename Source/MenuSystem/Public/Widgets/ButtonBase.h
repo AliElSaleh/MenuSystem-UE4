@@ -6,19 +6,6 @@
 #include "Blueprint/UserWidget.h"
 #include "ButtonBase.generated.h"
 
-UENUM()
-enum EButtonType
-{
-	NEW_GAME	UMETA(DisplayName = "New Game"),
-	CONTINUE	UMETA(DisplayName = "Continue"),
-	OPTIONS		UMETA(DisplayName = "Options"),
-	CREDITS		UMETA(DisplayName = "Credits"),
-	EXIT		UMETA(DisplayName = "Exit"),
-	VIDEO		UMETA(DisplayName = "Video"),
-	AUDIO		UMETA(DisplayName = "Audio"),
-	CONTROLS	UMETA(DisplayName = "Controls"),
-	BACK		UMETA(DisplayName = "Back")
-};
 
 /**
  * Base class for a menu button
@@ -40,9 +27,6 @@ protected:
 		virtual void OnButtonHovered();
 	UFUNCTION(BlueprintCallable, Category = "Events")
 		virtual void OnButtonUnhovered();
-
-	UPROPERTY(EditInstanceOnly, Category = "Menu Button")
-		TEnumAsByte<EButtonType> ButtonType;
 
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Menu Button")
 		FText ButtonText;

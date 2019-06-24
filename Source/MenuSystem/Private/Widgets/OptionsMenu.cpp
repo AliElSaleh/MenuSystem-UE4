@@ -3,6 +3,7 @@
 #include "OptionsMenu.h"
 #include "MenuHUD.h"
 #include "LogStatics.h"
+#include "TimerManager.h"
 
 void UOptionsMenu::NativeConstruct()
 {
@@ -12,21 +13,47 @@ void UOptionsMenu::NativeConstruct()
 		ULogStatics::LogDebugMessage(ERROR, FString("UOptionsMenu::NativeConstruct : Fade anim is null. You forgot to assign the fade animation in widget blueprint"), true);
 }
 
-void UOptionsMenu::OnAnimationFinished_Implementation(const UWidgetAnimation* Animation)
+void UOptionsMenu::Forward(const EMenuType Menu)
 {
-	if (RenderOpacity <= 0.0f)
+	MenuHUD->HideOptionsMenu();
+
+	Super::Forward(Menu);
+}
+
+void UOptionsMenu::GoForward()
+{
+	switch (MenuSelected)
 	{
-		SetVisibility(ESlateVisibility::Hidden);
-		
-		if (bControlsSelected)
-			MenuHUD->ShowControlsMenu();
-		else if (bVideoSelected)
-			MenuHUD->ShowVideoMenu();
-		else
-			MenuHUD->ShowMainMenu();
+	case VIDEO:
+		MenuHUD->ShowVideoMenu();
+		break;
+
+	case AUDIO:
+		break;
+
+	case CONTROLS:
+		MenuHUD->ShowControlsMenu();
+		break;
+
+	default:
+		break;
 	}
 
-	bControlsSelected = false;
+	Super::GoForward();
+}
+
+void UOptionsMenu::Back()
+{
+	MenuHUD->HideOptionsMenu();
+
+	Super::Back();
+}
+
+void UOptionsMenu::GoBack()
+{
+	MenuHUD->ShowMainMenu();
+
+	Super::GoBack();
 }
 
 void UOptionsMenu::SetOptionsTooltipText(const FText& Text)

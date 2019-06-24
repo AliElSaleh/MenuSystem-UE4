@@ -5,6 +5,18 @@
 #include "Blueprint/UserWidget.h"
 #include "MenuBase.generated.h"
 
+UENUM()
+enum EMenuType
+{
+	MAIN,
+	OPTIONS,
+	NEW_GAME,
+	CONTROLS,
+	VIDEO,
+	AUDIO,
+	CREDITS
+};
+
 /**
  * Base class for any type of menu widgets i.e (Main, Options, Video, Audio, Input, etc.)  
  */
@@ -19,7 +31,11 @@ public:
 
 	virtual void Init();
 
-	virtual TArray<class UMenuSetting*> GetAllSettings();
+	UFUNCTION(BlueprintCallable)
+		virtual void Forward(EMenuType Menu);
+
+	UFUNCTION(BlueprintCallable)
+		virtual void Back();
 
 protected:
 	void NativeConstruct() override;
@@ -27,12 +43,11 @@ protected:
 	UFUNCTION(BlueprintCallable)
 		virtual void Apply();
 
-	UFUNCTION(BlueprintCallable)
-		virtual void Back();
 
 	UFUNCTION(BlueprintCallable, Category = "Video Menu")
 		virtual void StoreAllSettings(class UVerticalBox* ParentWidget);
 
+	virtual void GoForward();
 	virtual void GoBack();
 
 	void OnAnimationStarted_Implementation(const UWidgetAnimation* Animation) override;
@@ -41,7 +56,10 @@ protected:
 	UPROPERTY(BlueprintReadWrite, Category = "Animations")
 		UWidgetAnimation* Fade{};
 
+	EMenuType MenuSelected;
+
 	class AMenuHUD* MenuHUD{};
 
-	FTimerHandle TimerHandle;
+	FTimerHandle ForwardTimerHandle;
+	FTimerHandle BackTimerHandle;
 };

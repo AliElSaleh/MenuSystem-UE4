@@ -36,13 +36,14 @@ void UVideoMenu::Back()
 {
 	MenuHUD->HideVideoMenu();
 
-	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UVideoMenu::GoBack, 1.0f, false, Fade->GetEndTime());
+	Super::Back();
 }
 
 void UVideoMenu::GoBack()
 {
 	MenuHUD->ShowOptionsMenu();
-	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
+
+	Super::GoBack();
 }
 
 void UVideoMenu::AddVideoSetting(UVideoSetting* Setting)

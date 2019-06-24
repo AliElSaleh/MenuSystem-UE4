@@ -6,6 +6,13 @@
 #include "MenuHUD.h"
 #include "LogStatics.h"
 
+void UMenuButton::NativeConstruct()
+{
+	Super::NativeConstruct();
+
+	MainMenuRef = Cast<UMainMenu>(MenuHUD->GetMenu(MAIN_MENU));
+}
+
 void UMenuButton::OnButtonReleased()
 {
 	Super::OnButtonReleased();
@@ -14,44 +21,7 @@ void UMenuButton::OnButtonReleased()
 	if (IsMainMenuRefNull())
 		return;
 
-	switch (ButtonType)
-	{
-	case NEW_GAME:
-		MainMenuRef->bNewGameSelected = true;
-		MainMenuRef->bOptionsSelected = false;
-
-		MenuHUD->HideMainMenu();
-		break;
-
-	case CONTINUE:
-		MainMenuRef->bNewGameSelected = false;
-		MainMenuRef->bOptionsSelected = false;
-
-		MenuHUD->SlideMainMenu();
-		break;
-
-	case OPTIONS:
-		MainMenuRef->bNewGameSelected = false;
-		MainMenuRef->bOptionsSelected = true;
-
-		MenuHUD->HideMainMenu();
-		break;
-
-	case CREDITS:
-		MainMenuRef->bNewGameSelected = false;
-		MainMenuRef->bOptionsSelected = false;
-
-		MenuHUD->HideMainMenu();
-		break;
-
-	case EXIT:
-		UKismetSystemLibrary::QuitGame(GetWorld(), UGameplayStatics::GetPlayerController(GetWorld(), 0), EQuitPreference::Quit, true);
-		break;
-
-	default:
-		ULogStatics::LogDebugMessage(INFO, FString("UMenuButton::OnButtonReleased : Button does not exist!"), true);
-		break;
-	}
+	MainMenuRef->Forward(OPTIONS);
 }
 
 void UMenuButton::OnButtonHovered()

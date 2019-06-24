@@ -10,7 +10,7 @@
  * Base class of an options menu widget blueprint
  */
 UCLASS()
-class MENUSYSTEM_API UOptionsMenu : public UMenuBase
+class MENUSYSTEM_API UOptionsMenu final : public UMenuBase
 {
 	GENERATED_BODY()
 	
@@ -18,15 +18,14 @@ public:
 	UFUNCTION(BlueprintCallable)
 		void SetOptionsTooltipText(const FText& Text);
 
-	bool bControlsSelected{};
-	bool bVideoSelected{};
-	bool bAudioSelected{};
-
 protected:
 	void NativeConstruct() override;
 
-	void OnAnimationFinished_Implementation(const UWidgetAnimation* Animation) override;
+	void Forward(EMenuType Menu) override;
+	void GoForward() override;
+	void Back() override;
+	void GoBack() override;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Main Menu")
+	UPROPERTY(BlueprintReadOnly, Category = "Options Menu")
 		FText ButtonTooltipText;
 };
