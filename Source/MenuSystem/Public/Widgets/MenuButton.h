@@ -26,10 +26,6 @@ protected:
 	UPROPERTY(BlueprintReadWrite, Category = "Menu Button")
 		class UMainMenu* MainMenuRef;
 
-	
-	UPROPERTY(EditInstanceOnly, Category = "Menu Button")
-		TEnumAsByte<enum EMenuType> ButtonType;
-
 private:
 	bool IsMainMenuRefNull() const;
 };

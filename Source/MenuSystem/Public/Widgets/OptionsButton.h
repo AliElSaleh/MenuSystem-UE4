@@ -14,6 +14,8 @@ class MENUSYSTEM_API UOptionsButton : public UButtonBase
 	GENERATED_BODY()
 
 protected:
+	void NativeConstruct() override;
+
 	// For button functionality
 	void OnButtonReleased() override;
 

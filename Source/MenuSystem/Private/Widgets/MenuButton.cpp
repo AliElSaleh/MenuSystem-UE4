@@ -21,7 +21,7 @@ void UMenuButton::OnButtonReleased()
 	if (IsMainMenuRefNull())
 		return;
 
-	MainMenuRef->Forward(OPTIONS);
+	MainMenuRef->Forward(ButtonType);
 }
 
 void UMenuButton::OnButtonHovered()

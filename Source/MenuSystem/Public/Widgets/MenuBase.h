@@ -5,6 +5,8 @@
 #include "Blueprint/UserWidget.h"
 #include "MenuBase.generated.h"
 
+enum EButtonType;
+
 UENUM()
 enum EMenuType
 {
@@ -32,7 +34,7 @@ public:
 	virtual void Init();
 
 	UFUNCTION(BlueprintCallable)
-		virtual void Forward(EMenuType Menu);
+		virtual void Forward(EButtonType Menu);
 
 	UFUNCTION(BlueprintCallable)
 		virtual void Back();
@@ -56,7 +58,7 @@ protected:
 	UPROPERTY(BlueprintReadWrite, Category = "Animations")
 		UWidgetAnimation* Fade{};
 
-	EMenuType MenuSelected;
+	EButtonType MenuSelected;
 
 	class AMenuHUD* MenuHUD{};
 

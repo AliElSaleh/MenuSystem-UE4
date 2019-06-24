@@ -4,6 +4,7 @@
 #include "MenuHUD.h"
 #include "LogStatics.h"
 #include "TimerManager.h"
+#include "ButtonBase.h"
 
 void UOptionsMenu::NativeConstruct()
 {
@@ -13,7 +14,7 @@ void UOptionsMenu::NativeConstruct()
 		ULogStatics::LogDebugMessage(ERROR, FString("UOptionsMenu::NativeConstruct : Fade anim is null. You forgot to assign the fade animation in widget blueprint"), true);
 }
 
-void UOptionsMenu::Forward(const EMenuType Menu)
+void UOptionsMenu::Forward(const EButtonType Menu)
 {
 	MenuHUD->HideOptionsMenu();
 
@@ -24,15 +25,19 @@ void UOptionsMenu::GoForward()
 {
 	switch (MenuSelected)
 	{
-	case VIDEO:
+	case BTN_VIDEO:
 		MenuHUD->ShowVideoMenu();
 		break;
 
-	case AUDIO:
+	case BTN_AUDIO:
 		break;
 
-	case CONTROLS:
+	case BTN_CONTROLS:
 		MenuHUD->ShowControlsMenu();
+		break;
+
+	case BTN_BACK:
+		MenuHUD->ShowMainMenu();
 		break;
 
 	default:

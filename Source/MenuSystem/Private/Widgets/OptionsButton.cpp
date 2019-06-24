@@ -6,6 +6,13 @@
 #include "MenuHUD.h"
 #include "LogStatics.h"
 
+void UOptionsButton::NativeConstruct()
+{
+	Super::NativeConstruct();
+
+	OptionsMenuRef = Cast<UOptionsMenu>(MenuHUD->GetMenu(OPTIONS_MENU));
+}
+
 void UOptionsButton::OnButtonReleased()
 {
 	Super::OnButtonReleased(); 
@@ -13,6 +20,8 @@ void UOptionsButton::OnButtonReleased()
 	// Error check
 	if (IsOptionsMenuRefNull())
 		return;
+
+	OptionsMenuRef->Forward(ButtonType);
 }
 
 void UOptionsButton::OnButtonHovered()

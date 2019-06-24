@@ -20,7 +20,7 @@ public:
 
 	void SlideOut();
 
-	void Forward(EMenuType Menu) override;
+	void Forward(EButtonType Button) override;
 	void GoForward() override;
 
 protected:

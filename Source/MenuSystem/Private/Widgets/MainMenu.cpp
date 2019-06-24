@@ -3,6 +3,9 @@
 
 #include "Widgets/MainMenu.h"
 #include "MenuHUD.h"
+#include "ButtonBase.h"
+#include "Kismet/KismetSystemLibrary.h"
+#include "Kismet/GameplayStatics.h"
 
 void UMainMenu::SetMenuTooltipText(const FText& Text)
 {
@@ -14,19 +17,36 @@ void UMainMenu::SlideOut()
 	PlayAnimation(Slide);
 }
 
-void UMainMenu::Forward(const EMenuType Menu)
+void UMainMenu::Forward(const EButtonType Button)
 {
+	if (Button == BTN_EXIT)
+	{
+		UKismetSystemLibrary::QuitGame(GetWorld(), UGameplayStatics::GetPlayerController(GetWorld(), 0), EQuitPreference::Quit, false);
+		return;
+	}
+
 	MenuHUD->HideMainMenu();
 
-	Super::Forward(Menu);
+	Super::Forward(Button);
 }
 
 void UMainMenu::GoForward()
 {
 	switch (MenuSelected)
 	{
-	case OPTIONS:
+	case BTN_NEW_GAME:
+		MenuHUD->ShowNewGameMenu();
+		break;
+
+	case BTN_CONTINUE:
+		MenuHUD->SlideMainMenu();
+		break;
+
+	case BTN_OPTIONS:
 		MenuHUD->ShowOptionsMenu();
+		break;
+
+	case CREDITS:
 		break;
 
 	default:

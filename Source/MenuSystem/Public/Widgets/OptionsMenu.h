@@ -18,12 +18,13 @@ public:
 	UFUNCTION(BlueprintCallable)
 		void SetOptionsTooltipText(const FText& Text);
 
+	void Forward(EButtonType Menu) override;
+	void Back() override;
+
 protected:
 	void NativeConstruct() override;
 
-	void Forward(EMenuType Menu) override;
 	void GoForward() override;
-	void Back() override;
 	void GoBack() override;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Options Menu")

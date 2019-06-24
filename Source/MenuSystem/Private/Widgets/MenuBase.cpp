@@ -5,7 +5,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "GameFramework/GameUserSettings.h"
 #include "Engine/Engine.h"
-#include "LogStatics.h"
+#include "ButtonBase.h"
 #include "TimerManager.h"
 
 void UMenuBase::NativeConstruct()
@@ -53,7 +53,7 @@ void UMenuBase::StoreAllSettings(UVerticalBox* ParentWidget)
 
 }
 
-void UMenuBase::Forward(const EMenuType Menu)
+void UMenuBase::Forward(const EButtonType Menu)
 {
 	MenuSelected = Menu;
 	GetWorld()->GetTimerManager().SetTimer(ForwardTimerHandle, this, &UMenuBase::GoForward, 1.0f, false, Fade->GetEndTime());
