@@ -10,17 +10,18 @@
  * Base class of a controls widget blueprint
  */
 UCLASS()
-class MENUSYSTEM_API UControlsMenu : public UMenuBase
+class MENUSYSTEM_API UControlsMenu final : public UMenuBase
 {
 	GENERATED_BODY()
 	
 public:
 	void ResetKeyBindings();
 
+	void Back() override;
+	void GoBack() override;
+
 protected:
 	void NativeConstruct() override;
-
-	void OnAnimationFinished_Implementation(const UWidgetAnimation* Animation) override;
 
 	UPROPERTY(BlueprintReadWrite)
 		TArray<UUserWidget*> ControlsSlots;

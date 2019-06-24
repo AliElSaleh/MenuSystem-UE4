@@ -30,6 +30,7 @@ void UOptionsMenu::GoForward()
 		break;
 
 	case BTN_AUDIO:
+		MenuHUD->ShowOptionsMenu();
 		break;
 
 	case BTN_CONTROLS:
