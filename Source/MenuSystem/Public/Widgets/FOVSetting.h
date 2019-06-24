@@ -20,7 +20,7 @@ protected:
 	void NativePreConstruct() override;
 
 	UFUNCTION(BlueprintCallable)
-		void ChangeFOVSetting(float SliderValue);
+		void ChangeFOVSetting(float SliderValue, bool bApplyOnChange);
 
 	UFUNCTION(BlueprintPure)
 		float GetSliderValueAtDefaultFOV();

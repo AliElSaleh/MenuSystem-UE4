@@ -24,6 +24,9 @@ protected:
 	UFUNCTION(BlueprintCallable, Category = "Video Setting")
 		void PopulateResolutionList(class UComboBoxString* DropDownList);
 
+	UFUNCTION(BlueprintPure, Category = "Video Settings")
+		TArray<FString> GetAllSupportedResolutions();
+
 	UPROPERTY(EditInstanceOnly, Category = "Video Setting")
 		FString DefaultResolution = FString("1280x720");
 

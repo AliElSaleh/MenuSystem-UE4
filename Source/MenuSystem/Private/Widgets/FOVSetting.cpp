@@ -17,9 +17,12 @@ void UFOVSetting::NativePreConstruct()
 	CurrentFOV = DefaultFOV;
 }
 
-void UFOVSetting::ChangeFOVSetting(const float SliderValue)
+void UFOVSetting::ChangeFOVSetting(const float SliderValue, const bool bApplyOnChange)
 {
 	CurrentFOV = int32(FMath::GetMappedRangeValueClamped(FVector2D(0.0f, 1.0f), FVector2D(float(MinFOV), float(MaxFOV)), SliderValue));
+
+	if (bApplyOnChange)
+		Apply();
 }
 
 float UFOVSetting::GetSliderValueAtDefaultFOV()

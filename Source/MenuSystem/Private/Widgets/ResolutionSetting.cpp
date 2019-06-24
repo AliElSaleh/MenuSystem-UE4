@@ -36,6 +36,20 @@ void UResolutionSetting::PopulateResolutionList(UComboBoxString* DropDownList)
 	DropDownList->SetSelectedOption(DefaultResolution);
 }
 
+TArray<FString> UResolutionSetting::GetAllSupportedResolutions()
+{
+	TArray<FString> Resolutions;
+
+	for (int32 i = ScreenResolutions.Num() - 1; i >= 0; i--)
+	{
+		FString Option = FString::FromInt(ScreenResolutions[i].Width) + "x" + FString::FromInt(ScreenResolutions[i].Height);
+
+		Resolutions.Add(Option);
+	}
+
+	return Resolutions;
+}
+
 void UResolutionSetting::Apply()
 {
 	GEngine->GetGameUserSettings()->SetFullscreenMode(EWindowMode::Windowed);
