@@ -22,18 +22,18 @@ AMenuHUD::AMenuHUD()
 
 UUserWidget* AMenuHUD::GetMenu(const int32 Index)
 {
-	return Cast<UMasterMenu>(MasterMenu)->GetMenus()[Index];
+	return MasterMenu->GetMenus()[Index];
 }
 
 void AMenuHUD::ShowMainMenu()
 {
-	Cast<UMainMenu>(MasterMenu->GetMenu(MAIN_MENU))->FadeIn();
+	MasterMenu->GetMenu(MAIN_MENU)->FadeIn();
 	MasterMenu->SwitchToMenuIndex(MAIN_MENU);
 }
 
 void AMenuHUD::HideMainMenu()
 {
-	Cast<UMainMenu>(MasterMenu->GetMenu(MAIN_MENU))->FadeOut();
+	MasterMenu->GetMenu(MAIN_MENU)->FadeOut();
 }
 
 void AMenuHUD::SlideMainMenu()
@@ -43,13 +43,13 @@ void AMenuHUD::SlideMainMenu()
 
 void AMenuHUD::ShowOptionsMenu()
 {
-	Cast<UOptionsMenu>(MasterMenu->GetMenu(OPTIONS_MENU))->FadeIn();
+	MasterMenu->GetMenu(OPTIONS_MENU)->FadeIn();
 	MasterMenu->SwitchToMenuIndex(OPTIONS_MENU);
 }
 
 void AMenuHUD::HideOptionsMenu()
 {
-	Cast<UOptionsMenu>(MasterMenu->GetMenu(OPTIONS_MENU))->FadeOut();
+	MasterMenu->GetMenu(OPTIONS_MENU)->FadeOut();
 }
 
 void AMenuHUD::ShowNewGameMenu()
@@ -120,8 +120,5 @@ void AMenuHUD::LogWidgetFailures()
 
 bool AMenuHUD::AllWidgetsValid()
 {
-	if (!MasterMenu)
-		return false;
-
-	return true;
+	return MasterMenu != nullptr;
 }

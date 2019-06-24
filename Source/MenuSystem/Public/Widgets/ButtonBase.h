@@ -34,8 +34,6 @@ public:
 	virtual void Init();
 
 protected:
-	void NativeConstruct() override;
-
 	// For button functionality
 	UFUNCTION(BlueprintCallable, Category = "Events")
 		virtual void OnButtonReleased();
