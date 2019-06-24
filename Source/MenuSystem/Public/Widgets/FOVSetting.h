@@ -6,7 +6,7 @@
 #include "FOVSetting.generated.h"
 
 /**
- * FOV Setting class manages the Field of View setting
+ * Manages the Field of View setting
  */
 UCLASS()
 class MENUSYSTEM_API UFOVSetting final : public UVideoSetting
@@ -17,10 +17,26 @@ public:
 	void Apply() override;
 
 protected:
-	UFUNCTION(BlueprintCallable)
-		void ChangeFOVSetting(int32 Value);
+	void NativePreConstruct() override;
 
-private:
-	int32 DefaultFOV = 90;
-	int32 CurrentFOV = 90;
+	UFUNCTION(BlueprintCallable)
+		void ChangeFOVSetting(float SliderValue);
+
+	UFUNCTION(BlueprintPure)
+		float GetSliderValueAtDefaultFOV();
+
+	UFUNCTION(BlueprintPure)
+		float GetSliderValueAtFOV(int32 Value);
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "FOV")
+		int32 CurrentFOV = 90;
+
+	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "FOV")
+		int32 MinFOV = 70;
+
+	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "FOV")
+		int32 MaxFOV = 120;
+	
+	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "FOV")
+		int32 DefaultFOV = 90;
 };
