@@ -54,32 +54,35 @@ void AMenuHUD::HideOptionsMenu()
 
 void AMenuHUD::ShowNewGameMenu()
 {
-	//Cast<UNewGameMenu>(Widgets[NEW_GAME_MENU])->FadeIn();
+	MasterMenu->GetMenu(NEW_GAME_MENU)->FadeIn();
+	MasterMenu->SwitchToMenuIndex(NEW_GAME_MENU);
 }
 
 void AMenuHUD::HideNewGameMenu()
 {
-	//Cast<UNewGameMenu>(Widgets[NEW_GAME_MENU])->FadeOut();
+	MasterMenu->GetMenu(NEW_GAME_MENU)->FadeOut();
 }
 
 void AMenuHUD::ShowVideoMenu()
 {
-	//Cast<UVideoMenu>(Widgets[VIDEO_MENU])->FadeIn();
+	MasterMenu->GetMenu(VIDEO_MENU)->FadeIn();
+	MasterMenu->SwitchToMenuIndex(VIDEO_MENU);
 }
 
 void AMenuHUD::HideVideoMenu()
 {
-	//Cast<UVideoMenu>(Widgets[VIDEO_MENU])->FadeOut();
+	MasterMenu->GetMenu(VIDEO_MENU)->FadeOut();
 }
 
 void AMenuHUD::ShowControlsMenu()
 {
-	//Cast<UControlsMenu>(Widgets[CONTROLS_MENU])->FadeIn();
+	MasterMenu->GetMenu(CONTROLS_MENU)->FadeIn();
+	MasterMenu->SwitchToMenuIndex(CONTROLS_MENU);
 }
 
 void AMenuHUD::HideControlsMenu()
 {
-	//Cast<UControlsMenu>(Widgets[CONTROLS_MENU])->FadeOut();
+	MasterMenu->GetMenu(CONTROLS_MENU)->FadeOut();
 }
 
 void AMenuHUD::BeginPlay()

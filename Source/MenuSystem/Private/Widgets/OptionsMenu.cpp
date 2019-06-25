@@ -12,7 +12,7 @@ void UOptionsMenu::Init()
 {
 	Super::Init();
 
-	ParentBox = Cast<UVerticalBox>(WidgetTree->FindWidget("MenuOptions"));
+	ParentBox = Cast<UPanelWidget>(WidgetTree->FindWidget("MenuOptions"));
 
 	InitializeButtons();
 }

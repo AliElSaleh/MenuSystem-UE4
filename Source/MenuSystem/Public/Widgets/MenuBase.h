@@ -54,7 +54,7 @@ protected:
 	void OnAnimationStarted_Implementation(const UWidgetAnimation* Animation) override;
 	void OnAnimationFinished_Implementation(const UWidgetAnimation* Animation) override;
 
-	UVerticalBox* ParentBox;
+	UPanelWidget* ParentBox;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Animations")
 		UWidgetAnimation* Fade{};

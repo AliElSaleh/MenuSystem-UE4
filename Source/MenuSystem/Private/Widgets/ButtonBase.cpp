@@ -15,7 +15,7 @@ void UButtonBase::Init()
 void UButtonBase::OnButtonReleased()
 {
 	if (!MenuHUD)
-		ULogStatics::LogDebugMessage(ERROR, FString(GetName() + "OnButtonReleased : MenuHUD is null."), true);
+		ULogStatics::LogDebugMessage(ERROR, FString(GetName() + " | OnButtonReleased : MenuHUD is null."), true);
 }
 
 void UButtonBase::OnButtonHovered()

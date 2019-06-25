@@ -8,11 +8,10 @@
 #define MAIN_MENU 0
 #define OPTIONS_MENU 2
 #define NEW_GAME_MENU 1
-#define CONTROLS_MENU 5
-#define VIDEO_MENU 4
+#define CONTROLS_MENU 4
+#define VIDEO_MENU 3
 #define AUDIO_MENU 5
 #define CREDITS_SCREEN 2
-#define MASTER_MENU 7
 
 /**
  * A HUD that displays menu options to the user

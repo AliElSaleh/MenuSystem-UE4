@@ -11,7 +11,7 @@
 
 void UMenuBase::InitializeButtons()
 {
-	ULogStatics::LogDebugMessage(INFO, FString("No buttons to initialize!"), true);
+	ULogStatics::LogDebugMessage(INFO, FString(GetName() + " | No buttons to initialize!"), true);
 }
 
 void UMenuBase::FadeIn()
@@ -49,7 +49,7 @@ void UMenuBase::Apply()
 
 void UMenuBase::StoreAllSettings(UVerticalBox* ParentWidget)
 {
-
+	ULogStatics::LogDebugMessage(INFO, FString(GetName() + " | There are no settings to store!"), true);
 }
 
 void UMenuBase::Forward(const EButtonType Menu)

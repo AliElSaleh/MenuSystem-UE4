@@ -17,6 +17,9 @@ class MENUSYSTEM_API UControlsMenu final : public UMenuBase
 public:
 	void ResetKeyBindings();
 
+	void Init() override;
+	void InitializeButtons() override;
+
 	void Back() override;
 	void GoBack() override;
 
