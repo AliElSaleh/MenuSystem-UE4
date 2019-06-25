@@ -2,7 +2,6 @@
 
 
 #include "MenuSetting.h"
-#include "GameFramework/GameUserSettings.h"
 #include "MenuHUD.h"
 #include "Engine/Engine.h"
 #include "Kismet/GameplayStatics.h"
@@ -10,9 +9,10 @@
 void UMenuSetting::Init()
 {
 	MenuHUD = Cast<AMenuHUD>(UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetHUD());
+	GameUserSettings = GEngine->GetGameUserSettings();
 }
 
 void UMenuSetting::Apply()
 {
-	GEngine->GetGameUserSettings()->ApplySettings(false);
+	GameUserSettings->ApplySettings(false);
 }

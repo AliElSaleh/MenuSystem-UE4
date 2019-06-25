@@ -7,7 +7,7 @@
 #include "ResolutionSetting.generated.h"
 
 /**
- * Resolution setting class manages the change of the screen resolution
+ * Manages the change of screen resolution
  */
 UCLASS()
 class MENUSYSTEM_API UResolutionSetting final : public UVideoSetting

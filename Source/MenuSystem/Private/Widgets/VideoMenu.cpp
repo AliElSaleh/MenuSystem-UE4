@@ -15,6 +15,8 @@ void UVideoMenu::Init()
 	InitializeSettings();
 
 	InitializeButtons();
+
+	Apply();
 }
 
 void UVideoMenu::InitializeSettings()
@@ -31,6 +33,8 @@ void UVideoMenu::Apply()
 	{
 		Setting->Apply();
 	}
+
+	GEngine->GetGameUserSettings()->ApplySettings(false);
 }
 
 void UVideoMenu::Back()

@@ -52,7 +52,5 @@ TArray<FString> UResolutionSetting::GetAllSupportedResolutions()
 
 void UResolutionSetting::Apply()
 {
-	GEngine->GetGameUserSettings()->SetFullscreenMode(EWindowMode::Windowed);
-	GEngine->GetGameUserSettings()->SetScreenResolution(NewResolution);
-	GEngine->GetGameUserSettings()->ApplySettings(false);
+	GameUserSettings->SetScreenResolution(NewResolution);
 }

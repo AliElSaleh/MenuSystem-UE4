@@ -4,7 +4,6 @@
 
 #include "MenuSetting.h"
 #include "Engine/Engine.h"
-#include "GameFramework/GameUserSettings.h"
 #include "VideoSetting.generated.h"
 
 /**

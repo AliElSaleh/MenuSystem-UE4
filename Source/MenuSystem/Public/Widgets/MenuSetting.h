@@ -3,6 +3,7 @@
 #pragma once
 
 #include "Blueprint/UserWidget.h"
+#include "GameFramework/GameUserSettings.h"
 #include "MenuSetting.generated.h"
 
 /**
@@ -23,6 +24,8 @@ protected:
 
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category = "Video Setting")
 		FText SettingTooltipText;
+
+	class UGameUserSettings* GameUserSettings;
 
 	class AMenuHUD* MenuHUD;
 };
