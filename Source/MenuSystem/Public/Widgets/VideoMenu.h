@@ -15,6 +15,7 @@ class MENUSYSTEM_API UVideoMenu final : public UMenuBase
 
 public:
 	void Init() override;
+	void InitializeSettings() override;
 	void InitializeButtons() override;
 	void Apply() override;
 	void Back() override;
@@ -22,7 +23,6 @@ public:
 	void AddVideoSetting(class UVideoSetting* Setting);
 
 protected:
-	void NativeConstruct() override;
 	void GoBack() override;
 
 	void StoreAllSettings(class UVerticalBox* ParentWidget) override;

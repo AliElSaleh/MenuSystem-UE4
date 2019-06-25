@@ -1,7 +1,6 @@
 // Copyright Ali El Saleh 2019
 
 #include "VideoMenu.h"
-#include "LogStatics.h"
 #include "GameFramework/GameUserSettings.h"
 #include "VideoSetting.h"
 #include "Components/VerticalBox.h"
@@ -9,30 +8,27 @@
 #include "TimerManager.h"
 #include "WidgetTree.h"
 
-void UVideoMenu::NativeConstruct()
-{
-	Super::NativeConstruct();
-	
-	if (!Animation)
-		ULogStatics::LogDebugMessage(ERROR, FString("UVideoMenu::NativeConstruct : Fade anim is null. You forgot to assign the fade animation in widget blueprint"), true);
-}
-
 void UVideoMenu::Init()
 {
 	Super::Init();
 
-	ParentBox = Cast<UPanelWidget>(WidgetTree->FindWidget("MenuOptions"));
-
-	for (auto Setting : VideoSettings)
-	{
-		Setting->Init();
-	}
+	InitializeSettings();
 
 	InitializeButtons();
 }
 
+void UVideoMenu::InitializeSettings()
+{
+	for (auto Setting : VideoSettings)
+	{
+		Setting->Init();
+	}
+}
+
 void UVideoMenu::InitializeButtons()
 {
+	Super::InitializeButtons();
+
 	for (auto Button : ParentBox->GetAllChildren())
 	{
 		Cast<UButtonBase>(Button)->Init();

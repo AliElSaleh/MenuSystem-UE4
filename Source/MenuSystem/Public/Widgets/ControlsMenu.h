@@ -24,8 +24,6 @@ public:
 	void GoBack() override;
 
 protected:
-	void NativeConstruct() override;
-
 	UPROPERTY(BlueprintReadWrite)
 		TArray<UUserWidget*> ControlsSlots;
 };

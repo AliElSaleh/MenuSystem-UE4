@@ -12,13 +12,13 @@ void UMainMenu::Init()
 {
 	Super::Init();
 
-	ParentBox = Cast<UPanelWidget>(WidgetTree->FindWidget("MenuOptions"));
-
 	InitializeButtons();
 }
 
 void UMainMenu::InitializeButtons()
 {
+	Super::InitializeButtons();
+
 	for (auto Button : ParentBox->GetAllChildren())
 	{
 		Cast<UButtonBase>(Button)->Init();
@@ -35,6 +35,12 @@ void UMainMenu::Forward(const EButtonType Button)
 	if (Button == BTN_EXIT)
 	{
 		UKismetSystemLibrary::QuitGame(GetWorld(), UGameplayStatics::GetPlayerController(GetWorld(), 0), EQuitPreference::Quit, false);
+		return;
+	}
+
+	if (Button == BTN_CONTINUE)
+	{
+		MenuHUD->SlideMainMenu();
 		return;
 	}
 

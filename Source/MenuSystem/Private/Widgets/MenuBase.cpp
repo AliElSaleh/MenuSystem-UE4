@@ -8,10 +8,19 @@
 #include "ButtonBase.h"
 #include "TimerManager.h"
 #include "LogStatics.h"
+#include "WidgetTree.h"
+
+void UMenuBase::Init()
+{
+	MenuHUD = Cast<AMenuHUD>(UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetHUD());
+
+	if (!Animation)
+		ULogStatics::LogDebugMessage(ERROR, FString("UVideoMenu::NativeConstruct : Fade anim is null. You forgot to assign the fade animation in widget blueprint"), true);
+}
 
 void UMenuBase::InitializeButtons()
 {
-	ULogStatics::LogDebugMessage(INFO, FString(GetName() + " | No buttons to initialize!"), true);
+	ParentBox = Cast<UPanelWidget>(WidgetTree->FindWidget("MenuOptions"));
 }
 
 void UMenuBase::FadeIn()
@@ -24,11 +33,6 @@ void UMenuBase::FadeOut()
 {
 	if (Animation)
 		PlayAnimation(Animation);
-}
-
-void UMenuBase::Init()
-{
-	MenuHUD = Cast<AMenuHUD>(UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetHUD());
 }
 
 void UMenuBase::OnAnimationStarted_Implementation(const UWidgetAnimation* Animation)
@@ -71,6 +75,11 @@ void UMenuBase::Back()
 void UMenuBase::SetMenuTooltipText(const FText& Text)
 {
 	MenuTooltipText = Text;
+}
+
+void UMenuBase::InitializeSettings()
+{
+	ULogStatics::LogDebugMessage(INFO, FString(GetName() + " | There are no settings to initialize!"), true);
 }
 
 void UMenuBase::GoBack()

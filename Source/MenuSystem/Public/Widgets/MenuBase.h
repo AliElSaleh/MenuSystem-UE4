@@ -44,6 +44,7 @@ public:
 	virtual void SetMenuTooltipText(const FText& Text);
 
 protected:
+	virtual void InitializeSettings();
 	virtual void InitializeButtons();
 
 	UFUNCTION(BlueprintCallable, Category = "Video Menu")
@@ -51,7 +52,6 @@ protected:
 
 	virtual void GoForward();
 	virtual void GoBack();
-
 
 	void OnAnimationStarted_Implementation(const UWidgetAnimation* Animation) override;
 	void OnAnimationFinished_Implementation(const UWidgetAnimation* Animation) override;

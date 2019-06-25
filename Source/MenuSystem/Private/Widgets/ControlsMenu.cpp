@@ -6,28 +6,19 @@
 #include "WidgetTree.h"
 #include "Components/VerticalBox.h"
 #include "OutputDeviceNull.h"
-#include "LogStatics.h"
 #include "ButtonBase.h"
-
-void UControlsMenu::NativeConstruct()
-{
-	Super::NativeConstruct();
-
-	if (!Animation)
-		ULogStatics::LogDebugMessage(ERROR, FString("UControlsMenu::NativeConstruct : Fade anim is null. You forgot to assign the fade animation in widget blueprint"), true);
-}
 
 void UControlsMenu::Init()
 {
 	Super::Init();
-
-	ParentBox = Cast<UPanelWidget>(WidgetTree->FindWidget("MenuOptions"));
 
 	InitializeButtons();
 }
 
 void UControlsMenu::InitializeButtons()
 {
+	Super::InitializeButtons();
+
 	for (auto Button : ParentBox->GetAllChildren())
 	{
 		Cast<UButtonBase>(Button)->Init();
