@@ -33,6 +33,9 @@ public:
 	virtual void Init();
 
 	UFUNCTION(BlueprintCallable)
+		virtual void Apply();
+
+	UFUNCTION(BlueprintCallable)
 		virtual void Forward(EButtonType Menu);
 
 	UFUNCTION(BlueprintCallable)
@@ -40,9 +43,6 @@ public:
 
 protected:
 	virtual void InitializeButtons();
-
-	UFUNCTION(BlueprintCallable)
-		virtual void Apply();
 
 	UFUNCTION(BlueprintCallable, Category = "Video Menu")
 		virtual void StoreAllSettings(class UVerticalBox* ParentWidget);

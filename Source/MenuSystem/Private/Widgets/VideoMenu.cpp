@@ -7,6 +7,7 @@
 #include "Components/VerticalBox.h"
 #include "MenuHUD.h"
 #include "TimerManager.h"
+#include "WidgetTree.h"
 
 void UVideoMenu::NativeConstruct()
 {
@@ -20,9 +21,21 @@ void UVideoMenu::Init()
 {
 	Super::Init();
 
+	ParentBox = Cast<UPanelWidget>(WidgetTree->FindWidget("MenuOptions"));
+
 	for (auto Setting : VideoSettings)
 	{
 		Setting->Init();
+	}
+
+	InitializeButtons();
+}
+
+void UVideoMenu::InitializeButtons()
+{
+	for (auto Button : ParentBox->GetAllChildren())
+	{
+		Cast<UButtonBase>(Button)->Init();
 	}
 }
 
