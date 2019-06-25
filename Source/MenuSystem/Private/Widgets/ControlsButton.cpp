@@ -12,6 +12,7 @@ void UControlsButton::Init()
 {
 	Super::Init();
 
+	TextWidget = Cast<UTextBlock>(WidgetTree->FindWidget("Text"));
 	ControlsMenuRef = Cast<UControlsMenu>(MenuHUD->GetMenu(CONTROLS_MENU));
 }
 
@@ -40,22 +41,24 @@ void UControlsButton::OnButtonReleased()
 
 void UControlsButton::OnButtonHovered()
 {
+	HighlightText();
+
 	// Error check
 	if (IsControlsMenuRefNull())
 		return;
 
-	// Highlight button
-	Cast<UTextBlock>(WidgetTree->FindWidget(FName("Text")))->SetOpacity(1.0f);
+	ControlsMenuRef->SetMenuTooltipText(ButtonTooltipText);
 }
 
 void UControlsButton::OnButtonUnhovered()
 {
+	UnHighlightText();
+
 	// Error check
 	if (IsControlsMenuRefNull())
 		return;
 
-	// Unhighlight button
-	Cast<UTextBlock>(WidgetTree->FindWidget(FName("Text")))->SetOpacity(0.8f);
+	ControlsMenuRef->SetMenuTooltipText(FText());
 }
 
 bool UControlsButton::IsControlsMenuRefNull() const

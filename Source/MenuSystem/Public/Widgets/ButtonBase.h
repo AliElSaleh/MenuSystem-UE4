@@ -45,6 +45,9 @@ protected:
 	UFUNCTION(BlueprintCallable, Category = "Events")
 		virtual void OnButtonUnhovered();
 
+	virtual void HighlightText();
+	virtual void UnHighlightText();
+
 	UPROPERTY(EditInstanceOnly, Category = "Menu Button")
 		TEnumAsByte<EButtonType> ButtonType;
 
@@ -54,5 +57,16 @@ protected:
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Menu Button")
 		FText ButtonTooltipText;
 
+	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Menu Button", meta = (ClampMin = 0.0f, ClampMax=1.0f))
+		float HoveredOpacity = 1.0f;
+
+	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Menu Button", meta = (ClampMin = 0.0f, ClampMax=1.0f))
+		float UnhoveredOpacity = 0.8f;
+
+	class UTextBlock* TextWidget;
+
 	class AMenuHUD* MenuHUD;
+
+private:
+	bool IsTextWidgetNull() const;
 };

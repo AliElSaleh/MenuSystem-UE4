@@ -7,11 +7,13 @@
 #include "Kismet/GameplayStatics.h"
 #include "LogStatics.h"
 #include "WidgetTree.h"
+#include "TextBlock.h"
 
 void UVideoButton::Init()
 {
 	Super::Init();
 
+	TextWidget = Cast<UTextBlock>(WidgetTree->FindWidget("Text"));
 	VideoMenuRef = Cast<UVideoMenu>(MenuHUD->GetMenu(VIDEO_MENU));
 }
 
@@ -40,6 +42,8 @@ void UVideoButton::OnButtonReleased()
 
 void UVideoButton::OnButtonHovered()
 {
+	HighlightText();
+
 	// Error check
 	if (IsVideoMenuRefNull())
 		return;
@@ -49,6 +53,8 @@ void UVideoButton::OnButtonHovered()
 
 void UVideoButton::OnButtonUnhovered()
 {
+	UnHighlightText();
+
 	// Error check
 	if (IsVideoMenuRefNull())
 		return;

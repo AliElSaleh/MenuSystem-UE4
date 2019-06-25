@@ -5,11 +5,14 @@
 #include "Kismet/KismetSystemLibrary.h"
 #include "MenuHUD.h"
 #include "LogStatics.h"
+#include "WidgetTree.h"
+#include "TextBlock.h"
 
 void UMenuButton::Init()
 {
 	Super::Init();
 
+	TextWidget = Cast<UTextBlock>(WidgetTree->FindWidget("Text"));
 	MainMenuRef = Cast<UMainMenu>(MenuHUD->GetMenu(MAIN_MENU));
 }
 
@@ -26,6 +29,8 @@ void UMenuButton::OnButtonReleased()
 
 void UMenuButton::OnButtonHovered()
 {
+	HighlightText();
+
 	// Error check
 	if (IsMainMenuRefNull())
 		return;
@@ -36,6 +41,8 @@ void UMenuButton::OnButtonHovered()
 
 void UMenuButton::OnButtonUnhovered()
 {
+	UnHighlightText();
+
 	// Error check
 	if (IsMainMenuRefNull())
 		return;

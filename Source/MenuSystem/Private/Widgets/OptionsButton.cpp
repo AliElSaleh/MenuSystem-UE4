@@ -5,11 +5,14 @@
 #include "Widgets/OptionsMenu.h"
 #include "MenuHUD.h"
 #include "LogStatics.h"
+#include "WidgetTree.h"
+#include "TextBlock.h"
 
 void UOptionsButton::Init()
 {
 	Super::Init();
 
+	TextWidget = Cast<UTextBlock>(WidgetTree->FindWidget("Text"));
 	OptionsMenuRef = Cast<UOptionsMenu>(MenuHUD->GetMenu(OPTIONS_MENU));
 }
 
@@ -26,6 +29,8 @@ void UOptionsButton::OnButtonReleased()
 
 void UOptionsButton::OnButtonHovered()
 {
+	HighlightText();
+
 	// Error check
 	if (IsOptionsMenuRefNull())
 		return;
@@ -36,6 +41,8 @@ void UOptionsButton::OnButtonHovered()
 
 void UOptionsButton::OnButtonUnhovered()
 {
+	UnHighlightText();
+
 	// Error check
 	if (IsOptionsMenuRefNull())
 		return;
