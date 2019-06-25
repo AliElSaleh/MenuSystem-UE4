@@ -21,6 +21,18 @@ UUserWidget* AMenuHUD::GetMenu(const int32 Index)
 	return MasterMenu->GetMenus()[Index];
 }
 
+void AMenuHUD::ShowHUD()
+{
+	Super::ShowHUD();
+
+	MasterMenu->AddToViewport();
+}
+
+void AMenuHUD::HideHUD()
+{
+	MasterMenu->RemoveFromViewport();
+}
+
 void AMenuHUD::ShowMenu(const int32 Index)
 {
 	if (Index < MasterMenu->GetMenus().Num())

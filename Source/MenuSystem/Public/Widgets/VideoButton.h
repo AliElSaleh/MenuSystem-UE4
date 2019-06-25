@@ -20,12 +20,6 @@ protected:
 	// For button functionality
 	void OnButtonReleased() override;
 
-	// For tooltip text toggling
-	void OnButtonHovered() override;
-	void OnButtonUnhovered() override;
-
 private:
-	bool IsVideoMenuRefNull() const;
-
-	class UVideoMenu* VideoMenuRef;
+	class UVideoMenu* VideoMenu;
 };

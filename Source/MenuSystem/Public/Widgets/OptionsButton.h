@@ -20,13 +20,6 @@ protected:
 	// For button functionality
 	void OnButtonReleased() override;
 
-	// For tooltip text change
-	void OnButtonHovered() override;
-	void OnButtonUnhovered() override;
-
-	UPROPERTY(BlueprintReadWrite, Category = "Menu Button")
-		class UOptionsMenu* OptionsMenuRef;
-
 private:
-	bool IsOptionsMenuRefNull() const;
+	class UOptionsMenu* OptionsMenu;
 };

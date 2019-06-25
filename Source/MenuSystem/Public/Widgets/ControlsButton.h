@@ -20,14 +20,6 @@ protected:
 	// For button functionality
 	void OnButtonReleased() override;
 
-	// For text highlighting
-	void OnButtonHovered() override;
-	void OnButtonUnhovered() override;
-
 	UPROPERTY(BlueprintReadWrite, Category = "Menu Button")
-		class UControlsMenu* ControlsMenuRef;
-
-private:
-	bool IsControlsMenuRefNull() const;
-
+		class UControlsMenu* ControlsMenu;
 };

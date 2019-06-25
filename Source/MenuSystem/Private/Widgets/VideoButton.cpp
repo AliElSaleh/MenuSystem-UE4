@@ -5,16 +5,13 @@
 #include "MenuHUD.h"
 #include "VideoMenu.h"
 #include "Kismet/GameplayStatics.h"
-#include "LogStatics.h"
-#include "WidgetTree.h"
-#include "TextBlock.h"
 
 void UVideoButton::Init()
 {
 	Super::Init();
 
-	TextWidget = Cast<UTextBlock>(WidgetTree->FindWidget("Text"));
-	VideoMenuRef = Cast<UVideoMenu>(MenuHUD->GetMenu(VIDEO_MENU));
+	Menu = Cast<UVideoMenu>(MenuHUD->GetMenu(VIDEO_MENU));
+	VideoMenu = Cast<UVideoMenu>(Menu);
 }
 
 void UVideoButton::OnButtonReleased()
@@ -22,17 +19,17 @@ void UVideoButton::OnButtonReleased()
 	Super::OnButtonReleased();
 
 	// Error check
-	if (IsVideoMenuRefNull())
+	if (IsMenuNull())
 		return;
 
 	switch (ButtonType)
 	{
 	case BTN_APPLY:
-		VideoMenuRef->Apply();
+		Menu->Apply();
 		break;
 
 	case BTN_BACK:
-		VideoMenuRef->Back();
+		Menu->Back();
 		break;
 
 	default:
@@ -40,35 +37,3 @@ void UVideoButton::OnButtonReleased()
 	}
 }
 
-void UVideoButton::OnButtonHovered()
-{
-	HighlightText();
-
-	// Error check
-	if (IsVideoMenuRefNull())
-		return;
-
-	VideoMenuRef->SetMenuTooltipText(ButtonTooltipText);
-}
-
-void UVideoButton::OnButtonUnhovered()
-{
-	UnHighlightText();
-
-	// Error check
-	if (IsVideoMenuRefNull())
-		return;
-
-	VideoMenuRef->SetMenuTooltipText(FText());
-}
-
-bool UVideoButton::IsVideoMenuRefNull() const
-{
-	if (!VideoMenuRef)
-	{
-		ULogStatics::LogDebugMessage(ERROR, FString(GetName() + " | VideoMenuRef is null."), true);
-		return true;
-	}
-
-	return false;
-}

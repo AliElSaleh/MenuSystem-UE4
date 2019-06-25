@@ -7,6 +7,7 @@
 #include "Components/VerticalBox.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "Kismet/GameplayStatics.h"
+#include "TimerManager.h"
 
 void UMainMenu::Init()
 {
@@ -28,6 +29,8 @@ void UMainMenu::InitializeButtons()
 void UMainMenu::SlideOut()
 {
 	PlayAnimation(Slide);
+
+	GetWorld()->GetTimerManager().SetTimer(Timer, this, &UMainMenu::Remove, 1.0f, false, Slide->GetEndTime());
 }
 
 void UMainMenu::Forward(const EButtonType Button)
@@ -74,4 +77,9 @@ void UMainMenu::GoForward()
 	}
 
 	Super::GoForward();
+}
+
+void UMainMenu::Remove()
+{
+	MenuHUD->HideHUD();
 }

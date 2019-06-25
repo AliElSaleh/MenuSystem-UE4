@@ -67,6 +67,11 @@ protected:
 
 	class AMenuHUD* MenuHUD;
 
+	class UMenuBase* Menu;
+
+	bool IsMenuNull() const;
+
 private:
+	bool IsMenuHUDNull() const;
 	bool IsTextWidgetNull() const;
 };

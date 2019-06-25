@@ -3,34 +3,42 @@
 
 #include "ButtonBase.h"
 #include "MenuHUD.h"
+#include "MenuBase.h"
 #include "Kismet/GameplayStatics.h"
 #include "LogStatics.h"
+#include "WidgetTree.h"
 #include "TextBlock.h"
 
 void UButtonBase::Init()
 {
 	// Get the Menu HUD
 	MenuHUD = Cast<AMenuHUD>(UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetHUD());
+	TextWidget = Cast<UTextBlock>(WidgetTree->FindWidget("Text"));
 }
 
 void UButtonBase::OnButtonReleased()
 {
-	if (!MenuHUD)
-		ULogStatics::LogDebugMessage(ERROR, FString(GetName() + " | OnButtonReleased : MenuHUD is null."), true);
+	IsMenuHUDNull();
 }
 
 void UButtonBase::OnButtonHovered()
 {
 	HighlightText();
 
-	ULogStatics::LogDebugMessage(INFO, FString("No implementation for Hovered. Derive from UButtonBase to add functionality."), true);
+	if (IsMenuNull())
+		return;
+
+	Menu->SetMenuTooltipText(ButtonTooltipText);
 }
 
 void UButtonBase::OnButtonUnhovered()
 {
 	UnHighlightText();
 
-	ULogStatics::LogDebugMessage(INFO, FString("No implementation for Unhovered. Derive from UButtonBase to add functionality."), true);
+	if (IsMenuNull())
+		return;
+
+	Menu->SetMenuTooltipText(FText());
 }
 
 void UButtonBase::HighlightText()
@@ -47,6 +55,28 @@ void UButtonBase::UnHighlightText()
 		return;
 
 	TextWidget->SetOpacity(UnhoveredOpacity);
+}
+
+bool UButtonBase::IsMenuHUDNull() const
+{
+	if (!MenuHUD)
+	{
+		ULogStatics::LogDebugMessage(ERROR, FString(GetName() + " | MenuHUD is null"), true);
+		return true;
+	}
+
+	return false;
+}
+
+bool UButtonBase::IsMenuNull() const
+{
+	if (!Menu)
+	{
+		ULogStatics::LogDebugMessage(ERROR, FString(GetName() + " | Menu is null"), true);
+		return true;
+	}
+
+	return false;
 }
 
 bool UButtonBase::IsTextWidgetNull() const

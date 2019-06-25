@@ -26,6 +26,9 @@ public:
 
 	class UUserWidget* GetMenu(int32 Index);
 
+	void ShowHUD() override;
+	void HideHUD();
+
 	void ShowMenu(int32 Index);
 	void HideMenu(int32 Index);
 

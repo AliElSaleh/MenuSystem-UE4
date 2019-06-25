@@ -24,6 +24,12 @@ public:
 	void GoForward() override;
 
 protected:
+	UFUNCTION()
+		void Remove();
+
 	UPROPERTY(BlueprintReadWrite, Category = "Animations")
 		UWidgetAnimation* Slide{};
+
+private:
+	FTimerHandle Timer;
 };
