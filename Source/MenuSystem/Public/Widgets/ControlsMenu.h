@@ -18,7 +18,6 @@ public:
 	void ResetKeyBindings();
 
 	void Init() override;
-	void InitializeButtons() override;
 
 	void Back() override;
 	void GoBack() override;

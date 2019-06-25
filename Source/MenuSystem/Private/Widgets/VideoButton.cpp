@@ -5,6 +5,7 @@
 #include "MenuHUD.h"
 #include "VideoMenu.h"
 #include "Kismet/GameplayStatics.h"
+#include "LogStatics.h"
 
 void UVideoButton::Init()
 {
@@ -33,6 +34,7 @@ void UVideoButton::OnButtonReleased()
 		break;
 
 	default:
+		ULogStatics::LogDebugMessage(WARNING, FString(GetName() + " | Button not implemented!"), true);
 		break;
 	}
 }

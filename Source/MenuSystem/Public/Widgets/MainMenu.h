@@ -16,16 +16,16 @@ class MENUSYSTEM_API UMainMenu final : public UMenuBase
 
 public:
 	void Init() override;
-	void InitializeButtons() override;
 
 	void SlideOut();
 
 	void Forward(EButtonType Button) override;
-	void GoForward() override;
 
 protected:
 	UFUNCTION()
 		void Remove();
+
+	void GoForward() override;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Animations")
 		UWidgetAnimation* Slide{};

@@ -3,8 +3,6 @@
 #include "Widgets/MainMenu.h"
 #include "MenuHUD.h"
 #include "ButtonBase.h"
-#include "WidgetTree.h"
-#include "Components/VerticalBox.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "Kismet/GameplayStatics.h"
 #include "TimerManager.h"
@@ -14,16 +12,6 @@ void UMainMenu::Init()
 	Super::Init();
 
 	InitializeButtons();
-}
-
-void UMainMenu::InitializeButtons()
-{
-	Super::InitializeButtons();
-
-	for (auto Button : ParentBox->GetAllChildren())
-	{
-		Cast<UButtonBase>(Button)->Init();
-	}
 }
 
 void UMainMenu::SlideOut()
@@ -66,9 +54,6 @@ void UMainMenu::GoForward()
 
 	case BTN_OPTIONS:
 		MenuHUD->ShowMenu(OPTIONS_MENU);
-		break;
-
-	case CREDITS:
 		break;
 
 	default:

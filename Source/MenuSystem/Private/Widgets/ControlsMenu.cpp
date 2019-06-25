@@ -4,25 +4,13 @@
 #include "ControlsMenu.h"
 #include "MenuHUD.h"
 #include "WidgetTree.h"
-#include "Components/VerticalBox.h"
 #include "OutputDeviceNull.h"
-#include "ButtonBase.h"
 
 void UControlsMenu::Init()
 {
 	Super::Init();
 
 	InitializeButtons();
-}
-
-void UControlsMenu::InitializeButtons()
-{
-	Super::InitializeButtons();
-
-	for (auto Button : ParentBox->GetAllChildren())
-	{
-		Cast<UButtonBase>(Button)->Init();
-	}
 }
 
 void UControlsMenu::Back()

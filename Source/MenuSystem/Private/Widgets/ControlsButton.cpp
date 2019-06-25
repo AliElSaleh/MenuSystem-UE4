@@ -4,6 +4,7 @@
 #include "ControlsButton.h"
 #include "ControlsMenu.h"
 #include "MenuHUD.h"
+#include "LogStatics.h"
 
 void UControlsButton::Init()
 {
@@ -32,6 +33,7 @@ void UControlsButton::OnButtonReleased()
 		break;
 
 	default:
+		ULogStatics::LogDebugMessage(WARNING, FString(GetName() + " | Button not implemented!"), true);
 		break;
 	}
 }

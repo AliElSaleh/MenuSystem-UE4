@@ -16,7 +16,6 @@ class MENUSYSTEM_API UVideoMenu final : public UMenuBase
 public:
 	void Init() override;
 	void InitializeSettings() override;
-	void InitializeButtons() override;
 	void Apply() override;
 	void Back() override;
 

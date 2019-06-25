@@ -25,16 +25,6 @@ void UVideoMenu::InitializeSettings()
 	}
 }
 
-void UVideoMenu::InitializeButtons()
-{
-	Super::InitializeButtons();
-
-	for (auto Button : ParentBox->GetAllChildren())
-	{
-		Cast<UButtonBase>(Button)->Init();
-	}
-}
-
 void UVideoMenu::Apply()
 {
 	for (auto Setting : VideoSettings)

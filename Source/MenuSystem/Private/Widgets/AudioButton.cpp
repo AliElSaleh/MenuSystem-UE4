@@ -4,6 +4,7 @@
 #include "AudioButton.h"
 #include "MenuHUD.h"
 #include "AudioMenu.h"
+#include "LogStatics.h"
 
 void UAudioButton::Init()
 {
@@ -28,6 +29,7 @@ void UAudioButton::OnButtonReleased()
 		break;
 
 	default:
+		ULogStatics::LogDebugMessage(WARNING, FString(GetName() + " | Button not implemented!"), true);
 		break;
 	}
 }

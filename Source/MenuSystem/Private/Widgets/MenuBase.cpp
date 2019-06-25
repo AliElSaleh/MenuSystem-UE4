@@ -21,6 +21,11 @@ void UMenuBase::Init()
 void UMenuBase::InitializeButtons()
 {
 	ParentBox = Cast<UPanelWidget>(WidgetTree->FindWidget("MenuOptions"));
+
+	for (auto Button : ParentBox->GetAllChildren())
+	{
+		Cast<UButtonBase>(Button)->Init();
+	}
 }
 
 void UMenuBase::FadeIn()
