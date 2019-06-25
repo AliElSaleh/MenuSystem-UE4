@@ -68,6 +68,11 @@ void UMenuBase::Back()
 	GetWorld()->GetTimerManager().SetTimer(BackTimerHandle, this, &UMenuBase::GoBack, 1.0f, false, Animation->GetEndTime());
 }
 
+void UMenuBase::SetMenuTooltipText(const FText& Text)
+{
+	MenuTooltipText = Text;
+}
+
 void UMenuBase::GoBack()
 {
 	GetWorld()->GetTimerManager().ClearTimer(BackTimerHandle);

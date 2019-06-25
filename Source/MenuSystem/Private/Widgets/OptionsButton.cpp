@@ -31,7 +31,7 @@ void UOptionsButton::OnButtonHovered()
 		return;
 
 	// Set the menu's tooltip text based on this button's tooltip text set in the widget editor
-	OptionsMenuRef->SetOptionsTooltipText(ButtonTooltipText);
+	OptionsMenuRef->SetMenuTooltipText(ButtonTooltipText);
 }
 
 void UOptionsButton::OnButtonUnhovered()
@@ -41,7 +41,7 @@ void UOptionsButton::OnButtonUnhovered()
 		return;
 
 	// Clear tooltip in main menu
-	OptionsMenuRef->SetOptionsTooltipText(FText());
+	OptionsMenuRef->SetMenuTooltipText(FText());
 }
 
 bool UOptionsButton::IsOptionsMenuRefNull() const

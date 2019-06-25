@@ -18,16 +18,10 @@ public:
 	void Init() override;
 	void InitializeButtons() override;
 
-	UFUNCTION(BlueprintCallable)
-		void SetOptionsTooltipText(const FText& Text);
-
 	void Forward(EButtonType Menu) override;
 	void Back() override;
 
 protected:
 	void GoForward() override;
 	void GoBack() override;
-
-	UPROPERTY(BlueprintReadOnly, Category = "Options Menu")
-		FText ButtonTooltipText;
 };

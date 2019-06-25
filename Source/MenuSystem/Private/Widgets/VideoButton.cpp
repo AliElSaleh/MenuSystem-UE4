@@ -38,6 +38,24 @@ void UVideoButton::OnButtonReleased()
 	}
 }
 
+void UVideoButton::OnButtonHovered()
+{
+	// Error check
+	if (IsVideoMenuRefNull())
+		return;
+
+	VideoMenuRef->SetMenuTooltipText(ButtonTooltipText);
+}
+
+void UVideoButton::OnButtonUnhovered()
+{
+	// Error check
+	if (IsVideoMenuRefNull())
+		return;
+
+	VideoMenuRef->SetMenuTooltipText(FText());
+}
+
 bool UVideoButton::IsVideoMenuRefNull() const
 {
 	if (!VideoMenuRef)

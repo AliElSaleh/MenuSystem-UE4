@@ -41,6 +41,8 @@ public:
 	UFUNCTION(BlueprintCallable)
 		virtual void Back();
 
+	virtual void SetMenuTooltipText(const FText& Text);
+
 protected:
 	virtual void InitializeButtons();
 
@@ -50,6 +52,7 @@ protected:
 	virtual void GoForward();
 	virtual void GoBack();
 
+
 	void OnAnimationStarted_Implementation(const UWidgetAnimation* Animation) override;
 	void OnAnimationFinished_Implementation(const UWidgetAnimation* Animation) override;
 
@@ -57,6 +60,9 @@ protected:
 
 	UPROPERTY(BlueprintReadWrite, Category = "Animations")
 		UWidgetAnimation* Animation{};
+
+	UPROPERTY(BlueprintReadOnly, Category = "Menu Base")
+		FText MenuTooltipText;
 
 	EButtonType MenuSelected;
 

@@ -71,8 +71,3 @@ void UOptionsMenu::GoBack()
 
 	Super::GoBack();
 }
-
-void UOptionsMenu::SetOptionsTooltipText(const FText& Text)
-{
-	ButtonTooltipText = Text;
-}

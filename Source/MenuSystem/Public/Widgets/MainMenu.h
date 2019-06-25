@@ -18,9 +18,6 @@ public:
 	void Init() override;
 	void InitializeButtons() override;
 
-	UFUNCTION(BlueprintCallable)
-		void SetMenuTooltipText(const FText& Text);
-
 	void SlideOut();
 
 	void Forward(EButtonType Button) override;
@@ -29,7 +26,4 @@ public:
 protected:
 	UPROPERTY(BlueprintReadWrite, Category = "Animations")
 		UWidgetAnimation* Slide{};
-
-	UPROPERTY(BlueprintReadOnly, Category = "Main Menu")
-		FText ButtonTooltipText;
 };

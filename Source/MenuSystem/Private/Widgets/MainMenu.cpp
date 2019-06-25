@@ -25,11 +25,6 @@ void UMainMenu::InitializeButtons()
 	}
 }
 
-void UMainMenu::SetMenuTooltipText(const FText& Text)
-{
-	ButtonTooltipText = Text;
-}
-
 void UMainMenu::SlideOut()
 {
 	PlayAnimation(Slide);
