@@ -3,9 +3,8 @@
 #pragma once
 
 #include "Blueprint/UserWidget.h"
+#include "ButtonBase.h"
 #include "MenuBase.generated.h"
-
-enum EButtonType;
 
 UENUM()
 enum EMenuType

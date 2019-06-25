@@ -6,7 +6,6 @@
 #include "TimerManager.h"
 #include "ButtonBase.h"
 #include "WidgetTree.h"
-#include "Components/VerticalBox.h"
 
 void UOptionsMenu::Init()
 {
