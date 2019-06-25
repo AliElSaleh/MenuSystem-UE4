@@ -16,14 +16,14 @@ void UMenuBase::InitializeButtons()
 
 void UMenuBase::FadeIn()
 {
-	if (Fade)
-		PlayAnimation(Fade, 0.0f, 1, EUMGSequencePlayMode::Reverse);
+	if (Animation)
+		PlayAnimation(Animation, 0.0f, 1, EUMGSequencePlayMode::Reverse);
 }
 
 void UMenuBase::FadeOut()
 {
-	if (Fade)
-		PlayAnimation(Fade);
+	if (Animation)
+		PlayAnimation(Animation);
 }
 
 void UMenuBase::Init()
@@ -55,7 +55,7 @@ void UMenuBase::StoreAllSettings(UVerticalBox* ParentWidget)
 void UMenuBase::Forward(const EButtonType Menu)
 {
 	MenuSelected = Menu;
-	GetWorld()->GetTimerManager().SetTimer(ForwardTimerHandle, this, &UMenuBase::GoForward, 1.0f, false, Fade->GetEndTime());
+	GetWorld()->GetTimerManager().SetTimer(ForwardTimerHandle, this, &UMenuBase::GoForward, 1.0f, false, Animation->GetEndTime());
 }
 
 void UMenuBase::GoForward()
@@ -65,7 +65,7 @@ void UMenuBase::GoForward()
 
 void UMenuBase::Back()
 {
-	GetWorld()->GetTimerManager().SetTimer(BackTimerHandle, this, &UMenuBase::GoBack, 1.0f, false, Fade->GetEndTime());
+	GetWorld()->GetTimerManager().SetTimer(BackTimerHandle, this, &UMenuBase::GoBack, 1.0f, false, Animation->GetEndTime());
 }
 
 void UMenuBase::GoBack()

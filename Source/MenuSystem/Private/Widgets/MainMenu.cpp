@@ -43,7 +43,7 @@ void UMainMenu::Forward(const EButtonType Button)
 		return;
 	}
 
-	MenuHUD->HideMainMenu();
+	MenuHUD->HideMenu(MAIN_MENU);
 
 	Super::Forward(Button);
 }
@@ -53,7 +53,7 @@ void UMainMenu::GoForward()
 	switch (MenuSelected)
 	{
 	case BTN_NEW_GAME:
-		MenuHUD->ShowNewGameMenu();
+		MenuHUD->ShowMenu(NEW_GAME_MENU);
 		break;
 
 	case BTN_CONTINUE:
@@ -61,14 +61,14 @@ void UMainMenu::GoForward()
 		break;
 
 	case BTN_OPTIONS:
-		MenuHUD->ShowOptionsMenu();
+		MenuHUD->ShowMenu(OPTIONS_MENU);
 		break;
 
 	case CREDITS:
 		break;
 
 	default:
-		MenuHUD->ShowMainMenu();
+		MenuHUD->ShowMenu(MAIN_MENU);
 		break;
 	}
 

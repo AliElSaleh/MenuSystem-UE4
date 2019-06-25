@@ -13,7 +13,7 @@ void UControlsMenu::NativeConstruct()
 {
 	Super::NativeConstruct();
 
-	if (!Fade)
+	if (!Animation)
 		ULogStatics::LogDebugMessage(ERROR, FString("UControlsMenu::NativeConstruct : Fade anim is null. You forgot to assign the fade animation in widget blueprint"), true);
 }
 
@@ -36,14 +36,14 @@ void UControlsMenu::InitializeButtons()
 
 void UControlsMenu::Back()
 {
-	MenuHUD->HideControlsMenu();
+	MenuHUD->HideMenu(CONTROLS_MENU);
 
 	Super::Back();
 }
 
 void UControlsMenu::GoBack()
 {
-	MenuHUD->ShowOptionsMenu();
+	MenuHUD->ShowMenu(OPTIONS_MENU);
 
 	Super::GoBack();
 }

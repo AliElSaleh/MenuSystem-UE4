@@ -5,10 +5,6 @@
 #include "Widget.h"
 #include "UserWidget.h"
 #include "MainMenu.h"
-#include "NewGameMenu.h"
-#include "OptionsMenu.h"
-#include "VideoMenu.h"
-#include "ControlsMenu.h"
 #include "LogStatics.h"
 #include "MasterMenu.h"
 
@@ -25,64 +21,28 @@ UUserWidget* AMenuHUD::GetMenu(const int32 Index)
 	return MasterMenu->GetMenus()[Index];
 }
 
-void AMenuHUD::ShowMainMenu()
+void AMenuHUD::ShowMenu(const int32 Index)
 {
-	MasterMenu->GetMenu(MAIN_MENU)->FadeIn();
-	MasterMenu->SwitchToMenuIndex(MAIN_MENU);
+	if (Index < MasterMenu->GetMenus().Num())
+	{
+		MasterMenu->GetMenu(Index)->FadeIn();
+		MasterMenu->SwitchToMenuIndex(Index);
+	}
+	else
+		ULogStatics::LogDebugMessage(ERROR, FString("Index out of range"), true);
 }
 
-void AMenuHUD::HideMainMenu()
+void AMenuHUD::HideMenu(const int32 Index)
 {
-	MasterMenu->GetMenu(MAIN_MENU)->FadeOut();
+	if (Index < MasterMenu->GetMenus().Num())
+		MasterMenu->GetMenu(Index)->FadeOut();
+	else
+		ULogStatics::LogDebugMessage(ERROR, FString("Index out of range"), true);
 }
 
 void AMenuHUD::SlideMainMenu()
 {
 	Cast<UMainMenu>(MasterMenu->GetMenu(MAIN_MENU))->SlideOut();
-}
-
-void AMenuHUD::ShowOptionsMenu()
-{
-	MasterMenu->GetMenu(OPTIONS_MENU)->FadeIn();
-	MasterMenu->SwitchToMenuIndex(OPTIONS_MENU);
-}
-
-void AMenuHUD::HideOptionsMenu()
-{
-	MasterMenu->GetMenu(OPTIONS_MENU)->FadeOut();
-}
-
-void AMenuHUD::ShowNewGameMenu()
-{
-	MasterMenu->GetMenu(NEW_GAME_MENU)->FadeIn();
-	MasterMenu->SwitchToMenuIndex(NEW_GAME_MENU);
-}
-
-void AMenuHUD::HideNewGameMenu()
-{
-	MasterMenu->GetMenu(NEW_GAME_MENU)->FadeOut();
-}
-
-void AMenuHUD::ShowVideoMenu()
-{
-	MasterMenu->GetMenu(VIDEO_MENU)->FadeIn();
-	MasterMenu->SwitchToMenuIndex(VIDEO_MENU);
-}
-
-void AMenuHUD::HideVideoMenu()
-{
-	MasterMenu->GetMenu(VIDEO_MENU)->FadeOut();
-}
-
-void AMenuHUD::ShowControlsMenu()
-{
-	MasterMenu->GetMenu(CONTROLS_MENU)->FadeIn();
-	MasterMenu->SwitchToMenuIndex(CONTROLS_MENU);
-}
-
-void AMenuHUD::HideControlsMenu()
-{
-	MasterMenu->GetMenu(CONTROLS_MENU)->FadeOut();
 }
 
 void AMenuHUD::BeginPlay()

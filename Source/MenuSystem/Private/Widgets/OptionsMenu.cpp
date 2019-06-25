@@ -26,7 +26,7 @@ void UOptionsMenu::InitializeButtons()
 
 void UOptionsMenu::Forward(const EButtonType Menu)
 {
-	MenuHUD->HideOptionsMenu();
+	MenuHUD->HideMenu(OPTIONS_MENU);
 
 	Super::Forward(Menu);
 }
@@ -36,19 +36,19 @@ void UOptionsMenu::GoForward()
 	switch (MenuSelected)
 	{
 	case BTN_VIDEO:
-		MenuHUD->ShowVideoMenu();
+		MenuHUD->ShowMenu(VIDEO_MENU);
 		break;
 
 	case BTN_AUDIO:
-		MenuHUD->ShowOptionsMenu();
+		MenuHUD->ShowMenu(AUDIO_MENU);
 		break;
 
 	case BTN_CONTROLS:
-		MenuHUD->ShowControlsMenu();
+		MenuHUD->ShowMenu(CONTROLS_MENU);
 		break;
 
 	case BTN_BACK:
-		MenuHUD->ShowMainMenu();
+		MenuHUD->ShowMenu(MAIN_MENU);
 		break;
 
 	default:
@@ -60,14 +60,14 @@ void UOptionsMenu::GoForward()
 
 void UOptionsMenu::Back()
 {
-	MenuHUD->HideOptionsMenu();
+	MenuHUD->HideMenu(OPTIONS_MENU);
 
 	Super::Back();
 }
 
 void UOptionsMenu::GoBack()
 {
-	MenuHUD->ShowMainMenu();
+	MenuHUD->ShowMenu(MAIN_MENU);
 
 	Super::GoBack();
 }

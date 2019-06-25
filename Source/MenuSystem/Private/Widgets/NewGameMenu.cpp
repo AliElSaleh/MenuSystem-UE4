@@ -7,6 +7,6 @@ void UNewGameMenu::NativeConstruct()
 {
 	Super::NativeConstruct();
 
-	if (!Fade)
+	if (!Animation)
 		ULogStatics::LogDebugMessage(ERROR, FString("UNewGameMenu::NativeConstruct : Fade anim is null. You forgot to assign the fade animation in widget blueprint"), true);
 }

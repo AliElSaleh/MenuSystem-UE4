@@ -56,7 +56,7 @@ protected:
 	UPanelWidget* ParentBox;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Animations")
-		UWidgetAnimation* Fade{};
+		UWidgetAnimation* Animation{};
 
 	EButtonType MenuSelected;
 

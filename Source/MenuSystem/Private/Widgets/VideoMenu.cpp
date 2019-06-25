@@ -12,7 +12,7 @@ void UVideoMenu::NativeConstruct()
 {
 	Super::NativeConstruct();
 	
-	if (!Fade)
+	if (!Animation)
 		ULogStatics::LogDebugMessage(ERROR, FString("UVideoMenu::NativeConstruct : Fade anim is null. You forgot to assign the fade animation in widget blueprint"), true);
 }
 
@@ -36,14 +36,14 @@ void UVideoMenu::Apply()
 
 void UVideoMenu::Back()
 {
-	MenuHUD->HideVideoMenu();
+	MenuHUD->HideMenu(VIDEO_MENU);
 
 	Super::Back();
 }
 
 void UVideoMenu::GoBack()
 {
-	MenuHUD->ShowOptionsMenu();
+	MenuHUD->ShowMenu(OPTIONS_MENU);
 
 	Super::GoBack();
 }
