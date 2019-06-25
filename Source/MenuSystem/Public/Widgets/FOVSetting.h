@@ -20,7 +20,7 @@ protected:
 	void NativePreConstruct() override;
 
 	UFUNCTION(BlueprintCallable)
-		void ChangeFOVSetting(float SliderValue, bool bApplyOnChange);
+		void ChangeFOVSetting(float SliderValue);
 
 	UFUNCTION(BlueprintPure)
 		float GetSliderValueAtDefaultFOV();
@@ -39,4 +39,7 @@ protected:
 	
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "FOV")
 		int32 DefaultFOV = 90;
+
+	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "FOV")
+		bool bApplyOnChange;
 };
