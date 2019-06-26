@@ -2,7 +2,6 @@
 
 #include "OptionsMenu.h"
 #include "MenuHUD.h"
-#include "LogStatics.h"
 #include "TimerManager.h"
 #include "ButtonBase.h"
 #include "WidgetTree.h"
@@ -11,17 +10,7 @@ void UOptionsMenu::Init()
 {
 	Super::Init();
 
-	ParentBox = Cast<UPanelWidget>(WidgetTree->FindWidget("MenuOptions"));
-
 	InitializeButtons();
-}
-
-void UOptionsMenu::InitializeButtons()
-{
-	for (auto Button : ParentBox->GetAllChildren())
-	{
-		Cast<UButtonBase>(Button)->Init();
-	}
 }
 
 void UOptionsMenu::Forward(const EButtonType Menu)

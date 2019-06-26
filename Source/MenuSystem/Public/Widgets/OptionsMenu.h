@@ -2,7 +2,6 @@
 
 #pragma once
 
-#include "Blueprint/UserWidget.h"
 #include "MenuBase.h"
 #include "OptionsMenu.generated.h"
 
@@ -16,7 +15,6 @@ class MENUSYSTEM_API UOptionsMenu final : public UMenuBase
 	
 public:
 	void Init() override;
-	void InitializeButtons() override;
 
 	void Forward(EButtonType Menu) override;
 	void Back() override;

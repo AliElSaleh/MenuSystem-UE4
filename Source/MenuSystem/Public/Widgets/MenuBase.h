@@ -47,8 +47,10 @@ protected:
 	virtual void InitializeSettings();
 	virtual void InitializeButtons();
 
+	void AddSetting(class UMenuSetting* Setting);
+
 	UFUNCTION(BlueprintCallable, Category = "Video Menu")
-		virtual void StoreAllSettings(class UVerticalBox* ParentWidget);
+		virtual void StoreAllSettings(class UPanelWidget* ParentWidget);
 
 	virtual void GoForward();
 	virtual void GoBack();
@@ -67,6 +69,8 @@ protected:
 	EButtonType MenuSelected;
 
 	class AMenuHUD* MenuHUD{};
+
+	TArray<class UMenuSetting*> MenuSettings;
 
 	FTimerHandle ForwardTimerHandle;
 	FTimerHandle BackTimerHandle;

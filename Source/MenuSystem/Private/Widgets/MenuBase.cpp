@@ -9,13 +9,23 @@
 #include "TimerManager.h"
 #include "LogStatics.h"
 #include "WidgetTree.h"
+#include "MenuSetting.h"
 
 void UMenuBase::Init()
 {
 	MenuHUD = Cast<AMenuHUD>(UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetHUD());
 
 	if (!Animation)
-		ULogStatics::LogDebugMessage(ERROR, FString("UVideoMenu::NativeConstruct : Fade anim is null. You forgot to assign the fade animation in widget blueprint"), true);
+		ULogStatics::LogDebugMessage(ERROR, FString(GetName() + " | Fade anim is null. You forgot to assign the fade animation in widget blueprint"), true);
+}
+
+void UMenuBase::InitializeSettings()
+{
+	for (auto Setting : MenuSettings)
+	{
+		Setting->Init();
+		Setting->SetMenuReference(this);
+	}
 }
 
 void UMenuBase::InitializeButtons()
@@ -25,6 +35,19 @@ void UMenuBase::InitializeButtons()
 	for (auto Button : ParentBox->GetAllChildren())
 	{
 		Cast<UButtonBase>(Button)->Init();
+	}
+}
+
+void UMenuBase::AddSetting(UMenuSetting* Setting)
+{
+	MenuSettings.Add(Setting);
+}
+
+void UMenuBase::StoreAllSettings(UPanelWidget* ParentWidget)
+{
+	for (auto Widget : ParentWidget->GetAllChildren())
+	{
+		AddSetting(Cast<UMenuSetting>(Widget));
 	}
 }
 
@@ -53,12 +76,12 @@ void UMenuBase::OnAnimationFinished_Implementation(const UWidgetAnimation* Anima
 
 void UMenuBase::Apply()
 {
-	GEngine->GetGameUserSettings()->ApplySettings(false);
-}
+	for (auto MenuSetting : MenuSettings)
+	{
+		MenuSetting->Apply();
+	}
 
-void UMenuBase::StoreAllSettings(UVerticalBox* ParentWidget)
-{
-	ULogStatics::LogDebugMessage(INFO, FString(GetName() + " | There are no settings to store!"), true);
+	GEngine->GetGameUserSettings()->ApplySettings(false);
 }
 
 void UMenuBase::Forward(const EButtonType Menu)
@@ -77,17 +100,12 @@ void UMenuBase::Back()
 	GetWorld()->GetTimerManager().SetTimer(BackTimerHandle, this, &UMenuBase::GoBack, 1.0f, false, Animation->GetEndTime());
 }
 
-void UMenuBase::SetMenuTooltipText(const FText& Text)
-{
-	MenuTooltipText = Text;
-}
-
-void UMenuBase::InitializeSettings()
-{
-	ULogStatics::LogDebugMessage(INFO, FString(GetName() + " | There are no settings to initialize!"), true);
-}
-
 void UMenuBase::GoBack()
 {
 	GetWorld()->GetTimerManager().ClearTimer(BackTimerHandle);
+}
+
+void UMenuBase::SetMenuTooltipText(const FText& Text)
+{
+	MenuTooltipText = Text;
 }
