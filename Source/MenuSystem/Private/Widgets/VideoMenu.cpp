@@ -24,6 +24,7 @@ void UVideoMenu::InitializeSettings()
 	for (auto Setting : VideoSettings)
 	{
 		Setting->Init();
+		Setting->SetMenuReference(this);
 	}
 }
 

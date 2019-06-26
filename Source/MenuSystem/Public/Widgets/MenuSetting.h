@@ -18,7 +18,12 @@ public:
 	virtual void Apply();
 	virtual void Init();
 
+	void SetMenuReference(class UMenuBase* InMenu);
+
 protected:
+	void NativeOnMouseEnter(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent) override;
+	void NativeOnMouseLeave(const FPointerEvent& InMouseEvent) override;
+
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category = "Video Setting")
 		FText SettingLabel;
 
@@ -26,6 +31,6 @@ protected:
 		FText SettingTooltipText;
 
 	class UGameUserSettings* GameUserSettings;
-
 	class AMenuHUD* MenuHUD;
+	class UMenuBase* Menu;
 };
