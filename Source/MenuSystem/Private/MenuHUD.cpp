@@ -84,7 +84,7 @@ void AMenuHUD::InitializeWidgets()
 void AMenuHUD::AddWidgetsToScreen()
 {
 	MasterMenu->AddToViewport();
-	MasterMenu->SetVisibility(ESlateVisibility::Visible); // Master menu widget
+	MasterMenu->SetVisibility(ESlateVisibility::Visible);
 }
 
 void AMenuHUD::LogWidgetFailures()
