@@ -46,5 +46,5 @@ protected:
 
 private:
 	TSubclassOf<class UMenuBase> WidgetClass;
-	class UMasterMenu* MasterMenu;
+	class UMasterMenu* MasterMenu{};
 };

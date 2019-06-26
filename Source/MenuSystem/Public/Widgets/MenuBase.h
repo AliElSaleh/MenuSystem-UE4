@@ -46,19 +46,16 @@ public:
 protected:
 	virtual void InitializeSettings();
 	virtual void InitializeButtons();
-
-	void AddSetting(class UMenuSetting* Setting);
-
-	UFUNCTION(BlueprintCallable, Category = "Video Menu")
-		virtual void StoreAllSettings(class UPanelWidget* ParentWidget);
-
 	virtual void GoForward();
 	virtual void GoBack();
 
 	void OnAnimationStarted_Implementation(const UWidgetAnimation* Animation) override;
 	void OnAnimationFinished_Implementation(const UWidgetAnimation* Animation) override;
 
-	UPanelWidget* ParentBox;
+	void AddSetting(class UMenuSetting* Setting);
+
+	UFUNCTION(BlueprintCallable, Category = "Video Menu")
+		virtual void StoreAllSettings(class UPanelWidget* ParentWidget);
 
 	UPROPERTY(BlueprintReadWrite, Category = "Animations")
 		UWidgetAnimation* Animation{};
@@ -67,6 +64,8 @@ protected:
 		FText MenuTooltipText;
 
 	EButtonType MenuSelected;
+
+	UPanelWidget* ParentBox;
 
 	class AMenuHUD* MenuHUD{};
 
