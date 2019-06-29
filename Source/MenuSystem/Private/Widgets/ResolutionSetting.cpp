@@ -31,9 +31,12 @@ void UResolutionSetting::PopulateResolutionList(UComboBoxString* DropDownList)
 
 		DropDownList->AddOption(Option);
 	}
+}
 
+void UResolutionSetting::SetSelectedOption(UComboBoxString* DropDownList)
+{
 	// Set the default resolution as the selected option
-	DropDownList->SetSelectedOption(DefaultResolution);
+	DropDownList->SetSelectedIndex(SelectedIndex);
 }
 
 TArray<FString> UResolutionSetting::GetAllSupportedResolutions()
