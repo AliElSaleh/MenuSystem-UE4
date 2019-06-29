@@ -30,7 +30,7 @@ protected:
 		int32 SelectedIndex;
 
 	UPROPERTY(EditInstanceOnly, Category = "Framerate Limit Setting")
-		TArray<FString> Items;
+		TArray<FString> Options;
 
 private:
 	float NewFrameRateLimit;

@@ -11,21 +11,21 @@ void UFramerateLimitSetting::Apply()
 
 void UFramerateLimitSetting::ChangeFrameRate(const FString& SelectedItem)
 {
-	for (auto Item : Items)
+	for (auto Option : Options)
 	{
-		if (SelectedItem == Item)
+		if (SelectedItem == Option)
 		{
-			if (Item == "Unlimited")
+			if (Option == "Unlimited")
 			{
 				NewFrameRateLimit = 0.0f;
 				break;
 			}
 
 			const FString SuffixToRemove = "FPS";
-			Item.RemoveFromEnd(SuffixToRemove);
-			Item.RemoveSpacesInline();
+			Option.RemoveFromEnd(SuffixToRemove);
+			Option.RemoveSpacesInline();
 
-			NewFrameRateLimit = FCString::Atof(*Item);
+			NewFrameRateLimit = FCString::Atof(*Option);
 			break;
 		}
 	}
@@ -33,7 +33,7 @@ void UFramerateLimitSetting::ChangeFrameRate(const FString& SelectedItem)
 
 void UFramerateLimitSetting::PopulateList(UComboBoxString* DropDownList)
 {
-	for (const auto& Item : Items)
+	for (const auto& Item : Options)
 		DropDownList->AddOption(Item);
 }
 
