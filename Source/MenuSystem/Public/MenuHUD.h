@@ -14,7 +14,7 @@
 #define CREDITS_SCREEN 6
 
 /**
- * A HUD that displays menu options to the user
+ * A HUD that displays different menu screens to the user
  */
 UCLASS()
 class MENUSYSTEM_API AMenuHUD final : public AHUD
