@@ -12,27 +12,21 @@ void UVSyncSetting::Apply()
 
 void UVSyncSetting::PopulateList(UComboBoxString* DropDownList)
 {
-	DropDownList->AddOption(FString("On"));
-	DropDownList->AddOption(FString("Off"));
+	for (const auto& Option : Options)
+	{
+		DropDownList->AddOption(Option);
+	}
 }
 
-void UVSyncSetting::SetSelectedOption(UComboBoxString* DropDownList, const bool bEnabled)
+void UVSyncSetting::SetSelectedOption(UComboBoxString* DropDownList)
 {
-	if (bEnabled)
-	{
-		bVSyncEnabled = true;
-		DropDownList->SetSelectedOption("On");
-	}
-	else
-	{
-		bVSyncEnabled = false;
-		DropDownList->SetSelectedOption("Off");
-	}
+	bVSyncEnabled = SelectedIndex;
+	DropDownList->SetSelectedIndex(SelectedIndex);
 }
 
 void UVSyncSetting::ChangeVSyncSetting(const FString& Selection)
 {
-	if (Selection == "On")
+	if (Selection == Options[0])
 	{	
 		bVSyncEnabled = true;
 	}

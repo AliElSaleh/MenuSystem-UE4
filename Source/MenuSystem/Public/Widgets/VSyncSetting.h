@@ -21,13 +21,16 @@ protected:
 		void PopulateList(class UComboBoxString* DropDownList);
 
 	UFUNCTION(BlueprintCallable, Category = "V-Sync Setting")
-		void SetSelectedOption(UComboBoxString* DropDownList, bool bEnabled);
+		void SetSelectedOption(UComboBoxString* DropDownList);
 
 	UFUNCTION(BlueprintCallable, Category = "V-Sync Setting")
 		void ChangeVSyncSetting(const FString& Selection);
 
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category = "V-Sync Setting")
-		bool bEnabledByDefault;
+		int32 SelectedIndex;
+
+	UPROPERTY(EditInstanceOnly, Category = "V-Sync Setting")
+		TArray<FString> Options;
 
 private:
 	bool bVSyncEnabled;
