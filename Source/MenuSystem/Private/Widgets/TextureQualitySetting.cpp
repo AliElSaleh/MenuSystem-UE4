@@ -9,7 +9,7 @@ void UTextureQualitySetting::Apply()
 	GameUserSettings->SetTextureQuality(SelectedIndex);
 }
 
-void UTextureQualitySetting::ChangeTextureQuality(const FString& SelectedItem)
+void UTextureQualitySetting::ChangeGraphicsSetting(const FString& SelectedItem)
 {
 	if (SelectedItem == Options[0])
 	{
@@ -27,17 +27,4 @@ void UTextureQualitySetting::ChangeTextureQuality(const FString& SelectedItem)
 	{
 		SelectedIndex = 3;
 	}
-}
-
-void UTextureQualitySetting::PopulateList(UComboBoxString* DropDownList)
-{
-	for (const auto& Option : Options)
-	{
-		DropDownList->AddOption(Option);
-	}
-}
-
-void UTextureQualitySetting::SetSelectedOption(UComboBoxString* DropDownList)
-{
-	DropDownList->SetSelectedIndex(SelectedIndex);
 }

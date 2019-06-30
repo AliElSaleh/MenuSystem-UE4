@@ -2,14 +2,14 @@
 
 #pragma once
 
-#include "Widgets/VideoSetting.h"
+#include "GraphicsSetting.h"
 #include "TextureQualitySetting.generated.h"
 
 /**
  * Manages the texture quality of the game
  */
 UCLASS()
-class MENUSYSTEM_API UTextureQualitySetting final : public UVideoSetting
+class MENUSYSTEM_API UTextureQualitySetting final : public UGraphicsSetting
 {
 	GENERATED_BODY()
 
@@ -17,20 +17,7 @@ public:
 	void Apply() override;
 
 protected:
-	UFUNCTION(BlueprintCallable, Category = "Texture Quality Setting")
-		void ChangeTextureQuality(const FString& SelectedItem);
-	
-	UFUNCTION(BlueprintCallable, Category = "Texture Quality Setting")
-		void PopulateList(class UComboBoxString* DropDownList);
-	
-	UFUNCTION(BlueprintCallable, Category = "Texture Quality Setting")
-		void SetSelectedOption(class UComboBoxString* DropDownList);
-
-	UPROPERTY(EditInstanceOnly, Category = "Texture Quality Setting")
-		int32 SelectedIndex;
-
-	UPROPERTY(EditInstanceOnly, Category = "Texture Quality Setting")
-		TArray<FString> Options;
+	void ChangeGraphicsSetting(const FString& SelectedItem) override;
 
 private:
 	int32 TextureQualityIndex;
