@@ -6,25 +6,25 @@
 
 void UTextureQualitySetting::Apply()
 {
-	GameUserSettings->SetTextureQuality(SelectedIndex);
+	GameUserSettings->SetTextureQuality(TextureQualityIndex);
 }
 
 void UTextureQualitySetting::ChangeGraphicsSetting(const FString& SelectedItem)
 {
 	if (SelectedItem == Options[0])
 	{
-		SelectedIndex = 0;
+		TextureQualityIndex = 0;
 	}
 	else if (SelectedItem == Options[1])
 	{
-		SelectedIndex = 1;
+		TextureQualityIndex = 1;
 	}
 	else if (SelectedItem == Options[2])
 	{
-		SelectedIndex = 2;
+		TextureQualityIndex = 2;
 	}
 	else if (SelectedItem == Options[3])
 	{
-		SelectedIndex = 3;
+		TextureQualityIndex = 3;
 	}
 }
